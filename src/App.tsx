@@ -1,5 +1,5 @@
 import { useRef, FormEvent, useEffect, useState } from "react";
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, deleteDoc } from "firebase/firestore";
 import { firestore } from "./firebase";
 import NewTaskForm from "./components/NewTaskForm";
 
@@ -8,7 +8,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(firestore, "Tasks"), (querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => doc.data());
+      const newData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setData(newData);
     });
 
@@ -21,13 +21,20 @@ function App(): JSX.Element {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = {
-      id: Math.floor(Date.now() / 10000),
       taskName: taskNameRef.current?.value,
       taskDeadline: dateRef.current?.value,
     };
 
     try {
       await addDoc(collection(firestore, "Tasks"), data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteDoc(doc(firestore, "Tasks", id));
     } catch (e) {
       console.log(e);
     }
@@ -43,6 +50,7 @@ function App(): JSX.Element {
             <li key={item.id}>
               <div>Task Name: {item.taskName}</div>
               <div>Task Deadline: {item.taskDeadline}</div>
+              <button onClick={() => handleDelete(item.id)}>Delete</button>
             </li>
           ))}
         </ul>
