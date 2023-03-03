@@ -2,6 +2,8 @@ import { useRef, FormEvent, useEffect, useState } from "react";
 import { collection, addDoc, onSnapshot, doc, deleteDoc } from "firebase/firestore";
 import { firestore } from "./firebase";
 import NewTaskForm from "./components/NewTaskForm";
+import Task from "./components/Task";
+import BackgroundImage from "./images/bgimg.jpg"
 
 function App(): JSX.Element {
   const [data, setData] = useState<any[]>([]);
@@ -23,6 +25,7 @@ function App(): JSX.Element {
     const data = {
       taskName: taskNameRef.current?.value,
       taskDeadline: dateRef.current?.value,
+
     };
 
     try {
@@ -40,19 +43,18 @@ function App(): JSX.Element {
     }
   };
 
+const renderedTaskList = data.map((item) => (
+  <Task key={item.id} id={item.id} taskName={item.taskName} taskDeadline={item.taskDeadline} handleDelete={handleDelete}/>
+))
+  
   return (
-    <div className="bg-slate-200 min-h-screen">
+    <div className="bg-zinc-700 h-screen">
+      <img src={BackgroundImage} alt="background" className="h-2/5 w-full object-cover" />
       <NewTaskForm onSubmit={handleSubmit} taskNameRef={taskNameRef} dateRef={dateRef} />
       <div>
         <h1>Tasks:</h1>
         <ul>
-          {data.map((item) => (
-            <li key={item.id}>
-              <div>Task Name: {item.taskName}</div>
-              <div>Task Deadline: {item.taskDeadline}</div>
-              <button onClick={() => handleDelete(item.id)}>Delete</button>
-            </li>
-          ))}
+          {renderedTaskList}
         </ul>
       </div>
     </div>
