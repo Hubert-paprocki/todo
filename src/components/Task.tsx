@@ -60,7 +60,7 @@ function Task({ id, taskDeadline, taskName, handleDelete }: TaskProps) {
   };
 
   let classes =
-  "bg-gray-800 m-4 px-5 py-4 rounded-2xl container mx-auto flex gap-2 items-center hover:scale-[102.5%] duration-700 max-w-3xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 ";
+  "bg-gray-800 m-4 px-5 py-4 rounded-2xl container mx-auto flex gap-2 items-center hover:scale-[102.5%] duration-700 max-w-5xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 z-10 relative";
 
 if (isDone === "no") {
   classes += " translate-x-[100vw] bg-red-700";
@@ -70,7 +70,7 @@ if (isDone === "yes") {
 }
 
 if (isTaskOverdue(taskDeadline)) {
-  classes += " border-rose-800/80 border-2 shadow-rose-800/50 shadow-sm";
+  classes += " border-rose-800/80 border-2";
 } else if (new Date(taskDeadline).toDateString() === new Date().toDateString()) {
   classes += " border-yellow-600/80 border-2";
 }
@@ -83,7 +83,7 @@ if (isTaskOverdue(taskDeadline)) {
       </Button>   : <Button done type="button" onClick={() => handleTaskDone()}>
         <TbCheck />
       </Button>}
-      <div>{taskName}</div>
+      <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-cyan-500 uppercase tracking-wide text-xl px-3">{taskName}</div>
       <div className="flex-1 text-gray-400">
         {!isTaskOverdue(taskDeadline)
           ? getTimeLeft(taskDeadline)

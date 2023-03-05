@@ -10,9 +10,9 @@ interface ButtonProps {
 
 function Button({ children,type, onClick,primary,done,deletes,reload}: ButtonProps) {
 	
-	let classes = "border-2 px-2 py-1 rounded border-violet-800 hover:scale-105 duration-200 uppercase";
+	let classes = "px-4 py-2 rounded hover:scale-105 duration-200 uppercase";
 	if (primary) {
-		classes += " font-semibold text-slate-200 bg-violet-800";
+		classes += " font-semibold text-slate-200 bg-gradient-to-r from-violet-600 to-cyan-600 ";
 	} else if (done) {
 		classes = "flex text-[1.6251rem] hover:scale-110 duration-200 text-black font-bold rounded-full bg-emerald-500/70 hover:bg-emerald-700 p-[4px] text-slate-200";
 	} else if (deletes) {

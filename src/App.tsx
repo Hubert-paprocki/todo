@@ -5,10 +5,13 @@ import NewTaskForm from "./components/NewTaskForm";
 import Task from "./components/Task";
 import BackgroundImage from "./images/bgimg.jpg"
 import Welcome from "./components/Welcome";
+import Footer from "./components/Footer";
+import Tip from "./components/Tip";
 
 
 function App(): JSX.Element {
   const [data, setData] = useState<any[]>([]);
+  
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(firestore, "Tasks"), (querySnapshot) => {
@@ -63,14 +66,17 @@ const renderedTaskList = data
 
   
   return (
-    <div className="bg-gray-900 bg-gradient-to-br from-pink-900/30 via-gray-900 to-indigo-900/10 h-screen overflow-x-hidden text-slate-200 p-3">
-      <div className="h-2/5 w-full object-cover relative rounded-t-2xl  "><img src={BackgroundImage} alt="background" className="h-full w-full object-cover relative rounded-t-2xl opacity-50"/> <Welcome/> </div>
-      <NewTaskForm onSubmit={handleSubmit} taskNameRef={taskNameRef} dateRef={dateRef} />
-
-        <ul>
-          {renderedTaskList}
+    <>
+      <div className="bg-gray-900 bg-gradient-to-br from-pink-900/30 via-gray-900 to-indigo-900/10 h-screen overflow-hidden text-slate-200 p-3">
+        <div className="h-2/5 w-full object-cover relative rounded-t-2xl  "><img src={BackgroundImage} alt="background" className="h-full w-full object-cover relative rounded-t-2xl opacity-50 drop-shadow-2xl"/> <Welcome/> </div>
+        <NewTaskForm onSubmit={handleSubmit} taskNameRef={taskNameRef} dateRef={dateRef} />
+          <ul className="overflow-y-scroll overflow-x-visible max-h-[55%] max-w-7xl mx-auto scrollbar-hide">
+            {renderedTaskList}
         </ul>
-    </div>
+        <Tip/>
+      </div>
+      <Footer/>
+    </>
   );
 }
 
