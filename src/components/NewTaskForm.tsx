@@ -11,10 +11,10 @@ interface NewTaskFormProps {
 function NewTaskForm({onSubmit,taskNameRef,dateRef}:NewTaskFormProps) {
     
   return (
-    <form onSubmit={onSubmit}>
-    <Input type="text" refs={taskNameRef} required />
-    <Input type="date" refs={dateRef} required />
-    <Button type="submit">Add task</Button>
+    <form onSubmit={onSubmit} className="bg-gray-800 m-4  p-6 rounded-2xl  container mx-auto flex gap-2 items-center max-w-3xl shadow-md  -mt-12 z-10 relative">
+    <Input type="text" refs={taskNameRef} required placeholder="What is on your mind?"/>
+    <Input type="date" refs={dateRef} required date/>
+    <Button primary type="submit">Add task</Button>
   </form>
   )
 }

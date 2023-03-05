@@ -4,6 +4,8 @@ import { firestore } from "./firebase";
 import NewTaskForm from "./components/NewTaskForm";
 import Task from "./components/Task";
 import BackgroundImage from "./images/bgimg.jpg"
+import Welcome from "./components/Welcome";
+
 
 function App(): JSX.Element {
   const [data, setData] = useState<any[]>([]);
@@ -37,26 +39,37 @@ function App(): JSX.Element {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteDoc(doc(firestore, "Tasks", id));
+      setTimeout(async () => {
+        await deleteDoc(doc(firestore, "Tasks", id));
+      }, 600); 
     } catch (e) {
       console.log(e);
     }
   };
+  
 
-const renderedTaskList = data.map((item) => (
-  <Task key={item.id} id={item.id} taskName={item.taskName} taskDeadline={item.taskDeadline} handleDelete={handleDelete}/>
-))
+const renderedTaskList = data
+  .slice() // make a copy of the data array before sorting
+  .sort((b, a) => new Date(b.taskDeadline).getTime() - new Date(a.taskDeadline).getTime()) // sort tasks based on deadline
+  .map((item) => (
+    <Task
+      key={item.id}
+      id={item.id}
+      taskName={item.taskName}
+      taskDeadline={item.taskDeadline}
+      handleDelete={handleDelete}
+    />
+  ));
+
   
   return (
-    <div className="bg-zinc-700 h-screen">
-      <img src={BackgroundImage} alt="background" className="h-2/5 w-full object-cover" />
+    <div className="bg-gray-900 bg-gradient-to-br from-pink-900/30 via-gray-900 to-indigo-900/10 h-screen overflow-x-hidden text-slate-200 p-3">
+      <div className="h-2/5 w-full object-cover relative rounded-t-2xl  "><img src={BackgroundImage} alt="background" className="h-full w-full object-cover relative rounded-t-2xl opacity-50"/> <Welcome/> </div>
       <NewTaskForm onSubmit={handleSubmit} taskNameRef={taskNameRef} dateRef={dateRef} />
-      <div>
-        <h1>Tasks:</h1>
+
         <ul>
           {renderedTaskList}
         </ul>
-      </div>
     </div>
   );
 }

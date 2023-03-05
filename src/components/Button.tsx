@@ -1,21 +1,25 @@
 interface ButtonProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	onClick?: () => void;
 	type?:"button" | "submit" | "reset" | undefined
 	primary?: boolean;
-    create?: boolean;
-    deletes?: boolean;
+    done?: boolean;
+	deletes?: boolean;
+	reload?: boolean;
 }
 
-function Button({ children,type, onClick,primary,create,deletes}: ButtonProps) {
+function Button({ children,type, onClick,primary,done,deletes,reload}: ButtonProps) {
 	
-	let classes = "border-2 px-2 py-1 rounded border-black";
+	let classes = "border-2 px-2 py-1 rounded border-violet-800 hover:scale-105 duration-200 uppercase";
 	if (primary) {
-		classes += "";
-	} else if (create) {
-		classes += "";
+		classes += " font-semibold text-slate-200 bg-violet-800";
+	} else if (done) {
+		classes = "flex text-[1.6251rem] hover:scale-110 duration-200 text-black font-bold rounded-full bg-emerald-500/70 hover:bg-emerald-700 p-[4px] text-slate-200";
 	} else if (deletes) {
-		classes += "";
+		classes = "flex  text-3xl hover:scale-110 duration-200 text-black font-bold rounded-full bg-rose-500/70 hover:bg-rose-700 text-slate-200 p-[2px]";
+	} 
+	else if (reload) {
+		classes = "flex  text-2xl hover:scale-110 duration-200 text-black font-bold rounded-full bg-slate-700 hover:bg-slate-600 text-slate-200 p-[4.98px]";
 	} 
 	return (
 		<button type={type} onClick={onClick} className={classes}>
