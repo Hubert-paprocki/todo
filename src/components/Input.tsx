@@ -8,9 +8,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 function Input({type,refs,required,date,placeholder}:InputProps) {
 	
-	let classes = "border-none h-10 px-2 py-1 rounded-full bg-slate-800 outline-none  duration-200 flex-1 w-full"
+	let classes = "text-center border-none h-10 px-2 py-1 rounded-full bg-slate-800 outline-none  duration-200 flex-1 w-full"
 	if (date) {
-		classes += " cursor-pointer outline-none text-center"
+		classes += " cursor-pointer outline-none"
 	}
 	const currentDate = new Date()
 	const formattedCurrentDate = currentDate.toISOString().substring(0, 10)

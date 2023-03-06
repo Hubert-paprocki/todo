@@ -1,10 +1,13 @@
+import LoginPage from "./pages/LoginPage";
 import ToDoPage from "./pages/ToDoPage"
 
 function App(): JSX.Element {
 
   return (
     <>
-<ToDoPage/>
+
+      <LoginPage />
+					  <ToDoPage />
     </>
   );
 }
