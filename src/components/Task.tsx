@@ -72,7 +72,7 @@ if (isDone === "yes") {
 if (isTaskOverdue(taskDeadline)) {
   classes += " border-rose-800/80 border-2";
 } else if (new Date(taskDeadline).toDateString() === new Date().toDateString()) {
-  classes += " border-yellow-600/80 border-2";
+  classes += " border-yellow-400/40 border-2";
 }
 
 
