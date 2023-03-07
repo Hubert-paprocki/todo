@@ -60,7 +60,7 @@ function Task({ id, taskDeadline, taskName, handleDelete }: TaskProps) {
   };
 
   let classes =
-  "bg-gray-800 m-4 px-2 py-1 md:px-5 md:py-4 rounded-2xl container mx-auto grid grid-cols-[min-content,1fr,min-content] md:grid-cols-[min-content,1fr,1fr,min-content] md:gap-2  hover:scale-[102.5%] duration-700  md:max-w-5xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 z-10 relative";
+  "bg-gray-800 m-4 px-2 py-1 md:px-5 md:py-4 rounded-2xl container mx-auto grid grid-cols-[min-content,1fr,min-content] md:grid-cols-[min-content,1fr,1fr,min-content] md:gap-2  hover:scale-[102.5%] duration-700 md:max-w-5xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 z-10 relative text-center ";
 
 if (isDone === "no") {
   classes += " translate-x-[100vw] bg-red-700";
@@ -87,7 +87,7 @@ if (isTaskOverdue(taskDeadline)) {
           <TbCheck />
         </Button>
 </div>}
-      <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-cyan-500 uppercase tracking-wide text-lg sm:text-xl px-3 col-start-2 justify-self-center md:col-span-1">{taskName}</div>
+      <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 uppercase tracking-wide text-lg sm:text-xl px-3 col-start-2 justify-self-center md:col-span-1 md:row-span-3">{taskName}</div>
       <div className="flex-1 text-gray-400 col-start-2 row-start-2 md:row-start-1 justify-self-center md:col-start-3">
         {!isTaskOverdue(taskDeadline)
           ? getTimeLeft(taskDeadline)
