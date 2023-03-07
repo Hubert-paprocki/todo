@@ -24,7 +24,7 @@ function App(): JSX.Element {
     });
   
     return () => unsubscribe();
-  }, []);
+  }, [userName]);
 
   
   
