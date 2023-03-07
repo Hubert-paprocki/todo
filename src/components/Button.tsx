@@ -10,7 +10,7 @@ interface ButtonProps {
 
 function Button({ children,type, onClick,primary,done,deletes,reload}: ButtonProps) {
 	
-	let classes = "px-4 py-2 rounded hover:scale-105 duration-200 uppercase";
+	let classes = " py-1 px-3 md:px-4 md:py-2 rounded hover:scale-105 duration-200 uppercase";
 	if (primary) {
 		classes += " font-semibold text-slate-200 bg-gradient-to-r from-violet-600 to-cyan-600 ";
 	} else if (done) {
