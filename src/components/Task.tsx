@@ -60,7 +60,7 @@ function Task({ id, taskDeadline, taskName, handleDelete }: TaskProps) {
   };
 
   let classes =
-  "bg-gray-800 m-4 px-2 py-1 md:px-5 md:py-4 rounded-2xl container mx-auto grid grid-cols-[min-content,1fr,min-content] md:grid-cols-[min-content,1fr,1fr,min-content] md:gap-2 justify-items-start hover:scale-[102.5%] duration-700  md:max-w-5xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 z-10 relative";
+  "bg-gray-800 m-4 px-2 py-1 md:px-5 md:py-4 rounded-2xl container mx-auto grid grid-cols-[min-content,1fr,min-content] md:grid-cols-[min-content,1fr,1fr,min-content] md:gap-2  hover:scale-[102.5%] duration-700  md:max-w-5xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 z-10 relative";
 
 if (isDone === "no") {
   classes += " translate-x-[100vw] bg-red-700";
@@ -78,11 +78,11 @@ if (isTaskOverdue(taskDeadline)) {
 
   return (
     <li className={classes}>
-{ isTaskOverdue(taskDeadline) ? <div className="col-start-1 row-span-full md:row-start-1">
+{ isTaskOverdue(taskDeadline) ? <div className="col-start-1 row-span-3 md:row-start-1 self-center">
   <Button reload type="button" onClick={() => handleTaskDone()}>
           <RxReload />
         </Button>
-</div>   : <div className="col-start-1 row-span-full md:row-start-1">
+</div>   : <div className="col-start-1 row-span-3 md:row-start-1 self-center">
   <Button done type="button" onClick={() => handleTaskDone()}>
           <TbCheck />
         </Button>
@@ -93,7 +93,7 @@ if (isTaskOverdue(taskDeadline)) {
           ? getTimeLeft(taskDeadline)
           : `You seem to have overlooked completing this task. ${getTimeLeft(taskDeadline)}`}
       </div>
-      <div className="col-start-3 justify-self-end md:col-start-4">
+      <div className="col-start-3  md:col-start-4 row-span-3 self-center">
         <Button deletes type="button" onClick={() => handleTaskDelete()}>
           <VscClose />
         </Button>
