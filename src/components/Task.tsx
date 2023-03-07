@@ -60,7 +60,7 @@ function Task({ id, taskDeadline, taskName, handleDelete }: TaskProps) {
   };
 
   let classes =
-  "bg-gray-800 m-4 px-5 py-4 rounded-2xl container mx-auto flex flex-col md:flex-row gap-2 items-center hover:scale-[102.5%] duration-700  md:max-w-5xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 z-10 relative";
+  "bg-gray-800 m-4 px-5 py-4 rounded-2xl container mx-auto grid grid-cols-[min-content,1fr,min-content] md:grid-cols-[min-content,1fr,1fr,min-content] gap-2 justify-items-start hover:scale-[102.5%] duration-700  md:max-w-5xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 z-10 relative";
 
 if (isDone === "no") {
   classes += " translate-x-[100vw] bg-red-700";
@@ -78,20 +78,26 @@ if (isTaskOverdue(taskDeadline)) {
 
   return (
     <li className={classes}>
-{ isTaskOverdue(taskDeadline) ? <Button reload type="button" onClick={() => handleTaskDone()}>
-        <RxReload />
-      </Button>   : <Button done type="button" onClick={() => handleTaskDone()}>
-        <TbCheck />
-      </Button>}
-      <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-cyan-500 uppercase tracking-wide text-lg sm:text-xl px-3">{taskName}</div>
-      <div className="flex-1 text-gray-400">
+{ isTaskOverdue(taskDeadline) ? <div className="col-start-1 row-start-2 md:row-start-1">
+  <Button reload type="button" onClick={() => handleTaskDone()}>
+          <RxReload />
+        </Button>
+</div>   : <div className="col-start-1 row-start-2 md:row-start-1">
+  <Button done type="button" onClick={() => handleTaskDone()}>
+          <TbCheck />
+        </Button>
+</div>}
+      <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-cyan-500 uppercase tracking-wide text-lg sm:text-xl px-3 col-span-full justify-self-center md:col-span-1">{taskName}</div>
+      <div className="flex-1 text-gray-400 col-start-2 justify-self-center md:col-start-3">
         {!isTaskOverdue(taskDeadline)
           ? getTimeLeft(taskDeadline)
           : `You seem to have overlooked completing this task. ${getTimeLeft(taskDeadline)}`}
       </div>
-      <Button deletes type="button" onClick={() => handleTaskDelete()}>
-        <VscClose />
-      </Button>
+      <div className="col-start-3 justify-self-end md:col-start-4">
+        <Button deletes type="button" onClick={() => handleTaskDelete()}>
+          <VscClose />
+        </Button>
+      </div>
     </li>
   );
 }
