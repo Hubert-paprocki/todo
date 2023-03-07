@@ -11,8 +11,8 @@ interface NewTaskFormProps {
 function NewTaskForm({onSubmit,taskNameRef,dateRef}:NewTaskFormProps) {
     
   return (
-    <form onSubmit={onSubmit} className="bg-gray-800 m-4 py-6 px-12 rounded-2xl mx-auto flex gap-12 max-w-4xl shadow-md -mt-12 z-10 relative items-center justify-evenly">
-      <div className="flex flex-1 gap-14">
+    <form onSubmit={onSubmit} className="bg-gray-800 m-4 py-6 px-12 rounded-2xl mx-auto flex flex-col md:flex-row gap-5 md:gap-12 max-w-fit md:max-w-4xl shadow-md -mt-12 z-10 relative items-center justify-evenly">
+      <div className="flex flex-col md:flex-row flex-1 gap-5 md:gap-14">
         <Input type="text" refs={taskNameRef} required placeholder="What is on your mind?"/>
         <Input type="date" refs={dateRef} required date/>
       </div>

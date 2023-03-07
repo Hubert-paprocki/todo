@@ -17,7 +17,7 @@ function LoginPage(): JSX.Element {
 
   return (
     <>
-      <div className="bg-gray-900 bg-gradient-to-br from-pink-900/30 via-gray-900 to-indigo-900/10 h-screen overflow-hidden text-slate-300 p-3 font-roboto text-xl flex justify-center items-center">
+      <div className="bg-gray-900 bg-gradient-to-br from-pink-900/30 via-gray-900 to-indigo-900/10 h-screen overflow-hidden text-slate-300 p-3 font-roboto text:lg md:text-xl flex justify-center items-center">
         <LoginForm onSubmit={handleSubmit} userNameRef={userNameRef} />
       </div>
       <Footer />

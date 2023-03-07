@@ -78,7 +78,7 @@ const renderedTaskList = data
   return (
     <>
       <div className="bg-gray-900 bg-gradient-to-br from-pink-900/30 via-gray-900 to-indigo-900/10 h-screen overflow-hidden text-slate-200 p-3">
-        <div className="h-2/5 w-full object-cover relative rounded-t-2xl  "><img src={BackgroundImage} alt="background" className="h-full w-full object-cover relative rounded-t-2xl opacity-50 drop-shadow-2xl"/> <Welcome username={userName}/> </div>
+        <div className="h-2/5 w-full object-cover relative rounded-2xl flex items-center"><img src={BackgroundImage} alt="background" className="h-full w-full object-cover absolute rounded-2xl opacity-50 drop-shadow-2xl"/> <Welcome username={userName}/> </div>
         <NewTaskForm onSubmit={handleSubmit} taskNameRef={taskNameRef} dateRef={dateRef} />
           <ul className="overflow-y-scroll overflow-x-visible max-h-[55%] max-w-7xl mx-auto scrollbar-hide">
             {renderedTaskList}
