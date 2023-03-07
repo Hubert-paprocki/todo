@@ -1,13 +1,11 @@
-import LoginPage from "./pages/LoginPage";
-import ToDoPage from "./pages/ToDoPage"
+import AppRoutes from "./components/Routes";
+
 
 function App(): JSX.Element {
 
   return (
     <>
-
-      <LoginPage />
-					  <ToDoPage />
+      <AppRoutes/>
     </>
   );
 }

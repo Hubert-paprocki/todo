@@ -1,16 +1,17 @@
-import { useRef, FormEvent, useState,useEffect  } from "react";
+import { useRef, FormEvent} from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import LoginForm from "../components/LoginForm";
 
 
-function LoginPage() {
-  const [username, setUsername] = useState<any>("");
+function LoginPage(): JSX.Element {
   const userNameRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setUsername(userNameRef.current?.value);
-    console.log(userNameRef.current?.value)
+
+    navigate(`/todos?user=${userNameRef.current?.value}`);
   };
 
 

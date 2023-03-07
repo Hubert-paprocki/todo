@@ -1,5 +1,5 @@
 import { useRef, FormEvent, useEffect, useState } from "react";
-import { collection, addDoc, onSnapshot, doc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, deleteDoc,query,where } from "firebase/firestore";
 import { firestore } from "../firebase";
 import NewTaskForm from "../components/NewTaskForm";
 import Task from "../components/Task";
@@ -7,20 +7,29 @@ import BackgroundImage from "../images/bgimg.jpg"
 import Welcome from "../components/Welcome";
 import Footer from "../components/Footer";
 import Tip from "../components/Tip";
+import { useLocation } from "react-router-dom";
 
 
 function App(): JSX.Element {
   const [data, setData] = useState<any[]>([]);
+  const location = useLocation();
+  const userName = new URLSearchParams(location.search).get("user")?.toString();
   
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(firestore, "Tasks"), (querySnapshot) => {
+    const q = query(collection(firestore, "Tasks"), where("userName", "==", userName));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setData(newData);
     });
-
+  
     return () => unsubscribe();
   }, []);
+
+  
+  
+  
+  
 
   const taskNameRef = useRef<HTMLInputElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
@@ -30,6 +39,7 @@ function App(): JSX.Element {
     const data = {
       taskName: taskNameRef.current?.value,
       taskDeadline: dateRef.current?.value,
+      userName: userName,
 
     };
 
@@ -68,7 +78,7 @@ const renderedTaskList = data
   return (
     <>
       <div className="bg-gray-900 bg-gradient-to-br from-pink-900/30 via-gray-900 to-indigo-900/10 h-screen overflow-hidden text-slate-200 p-3">
-        <div className="h-2/5 w-full object-cover relative rounded-t-2xl  "><img src={BackgroundImage} alt="background" className="h-full w-full object-cover relative rounded-t-2xl opacity-50 drop-shadow-2xl"/> <Welcome/> </div>
+        <div className="h-2/5 w-full object-cover relative rounded-t-2xl  "><img src={BackgroundImage} alt="background" className="h-full w-full object-cover relative rounded-t-2xl opacity-50 drop-shadow-2xl"/> <Welcome username={userName}/> </div>
         <NewTaskForm onSubmit={handleSubmit} taskNameRef={taskNameRef} dateRef={dateRef} />
           <ul className="overflow-y-scroll overflow-x-visible max-h-[55%] max-w-7xl mx-auto scrollbar-hide">
             {renderedTaskList}
