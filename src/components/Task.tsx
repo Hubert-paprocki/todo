@@ -98,10 +98,8 @@ return (
               <TbCheck />
             </Button>
           </div>
-        <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 uppercase tracking-wide text-lg sm:text-xl px-3 col-start-2 justify-self-center md:col-span-1 md:row-span-3 flex items-center">
-          <p>{taskName}</p>
-        </div>
-        <div className="flex-1 text-gray-400 col-start-2 row-start-2 md:row-start-1 justify-self-center md:col-start-3 md:row-span-3 flex items-center">
+          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 uppercase tracking-wide text-lg sm:text-xl px-3 col-start-2 justify-self-center md:col-span-1 md:row-span-3 flex items-center">{taskName}</p>
+        <div className="flex-1 text-gray-400 col-start-2 row-start-2 md:row-start-1  md:col-start-3 md:row-span-3 flex items-center justify-evenly">
           <p>
             Set new date:
           </p>
@@ -132,16 +130,12 @@ return (
             </Button>
           </div>
         )}
-        <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 uppercase tracking-wide text-lg sm:text-xl px-3 col-start-2 justify-self-center md:col-span-1 md:row-span-3 flex items-center">
-          <p>{taskName}</p>
-        </div>
-        <div className="flex-1 text-gray-400 col-start-2 row-start-2 md:row-start-1 justify-self-center md:col-start-3 md:row-span-3 flex items-center">
-          <p>
+          <p className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 uppercase tracking-wide text-lg sm:text-xl px-3 col-start-2 justify-self-center md:col-span-1 md:row-span-3 flex items-center">{taskName}</p>
+          <p className="flex-1 text-gray-400 col-start-2 row-start-2 md:row-start-1 justify-self-center md:col-start-3 md:row-span-3 flex items-center px-2">
             {!isTaskOverdue(taskDeadline)
               ? getTimeLeft(taskDeadline)
               : `You missed this task. ${getTimeLeft(taskDeadline)}`}
           </p>
-        </div>
         <div className="col-start-3  md:col-start-4 row-span-3 self-center">
           <Button
             deletes
