@@ -64,12 +64,13 @@ function Task({ id, taskDeadline, taskName, handleDelete,handleUpdate,newDateRef
     await handleDelete(id);
   };
   const handleTaskUpdate = async () => {
-    await handleUpdate(id);
     setIsUpdating(false)
+    await handleUpdate(id);
+
   };
 
   let classes =
-  "bg-gray-800 m-4 px-2 py-1 md:px-5 md:py-4 rounded-2xl container mx-auto grid grid-cols-[min-content,1fr,min-content] md:grid-cols-[min-content,1fr,1fr,min-content] md:gap-2  hover:scale-[102.5%] duration-700 md:max-w-5xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 z-10 relative text-center ";
+  "bg-gray-800 m-4 px-2 py-1 md:px-5 md:py-4 rounded-2xl container mx-auto grid grid-cols-[min-content,1fr,min-content] md:grid-cols-[min-content,1fr,1fr,min-content] md:gap-2  hover:scale-[102.5%] duration-700 md:max-w-5xl shadow-xl font-roboto hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-800 z-10 relative text-center";
 
 if (isDone === "no") {
   classes += " translate-x-[100vw] bg-red-700";
