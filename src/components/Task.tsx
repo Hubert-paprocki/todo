@@ -3,12 +3,14 @@ import { VscClose } from "react-icons/vsc";
 import { TbCheck } from "react-icons/tb";
 import {  RxReload } from "react-icons/rx";
 import Button from "./Button";
+import Input from "./Input";
 
 interface TaskProps {
   id: string;
   taskName: string;
   taskDeadline: Date;
   handleDelete: (id: string) => Promise<void>;
+  handleUpdate: (id: string) => Promise<void>;
 }
 
 function isTaskOverdue(taskDeadline: Date): boolean {
@@ -45,8 +47,10 @@ function getTimeLeft(taskDeadline: Date): string | null {
 }
 
 
-function Task({ id, taskDeadline, taskName, handleDelete }: TaskProps) {
+function Task({ id, taskDeadline, taskName, handleDelete,handleUpdate }: TaskProps) {
   const [isDone, setIsDone] = useState<string>("");
+  const [isUpdating, setIsUpdating] = useState(false)
+
   const handleTaskDelete = async () => {
     setIsDone("no");
     console.log(isDone);
@@ -57,6 +61,9 @@ function Task({ id, taskDeadline, taskName, handleDelete }: TaskProps) {
     setIsDone("yes");
     console.log(isDone);
     await handleDelete(id);
+  };
+  const handleTaskUpdate = async () => {
+    await handleUpdate(id);
   };
 
   let classes =
@@ -76,32 +83,77 @@ if (isTaskOverdue(taskDeadline)) {
 }
 
 
-  return (
-    <li className={classes}>
-{ isTaskOverdue(taskDeadline) ? <div className="col-start-1 row-span-3 md:row-start-1 self-center">
-  <Button reload type="button" onClick={() => handleTaskDone()}>
-          <RxReload />
-        </Button>
-</div>   : <div className="col-start-1 row-span-3 md:row-start-1 self-center">
-  <Button done type="button" onClick={() => handleTaskDone()}>
-          <TbCheck />
-        </Button>
-</div>}
-      <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 uppercase tracking-wide text-lg sm:text-xl px-3 col-start-2 justify-self-center md:col-span-1 md:row-span-3 flex items-center"><p>{taskName}</p></div>
-      <div className="flex-1 text-gray-400 col-start-2 row-start-2 md:row-start-1 justify-self-center md:col-start-3 md:row-span-3 flex items-center">
+return (
+  <li className={classes}>
+    {isUpdating ? (
+      <>
+          <div className="col-start-1 row-span-3 md:row-start-1 self-center">
+            <Button
+              done
+              type="button"
+              onClick={() =>handleTaskUpdate()}
+            >
+              <TbCheck />
+            </Button>
+          </div>
+        <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 uppercase tracking-wide text-lg sm:text-xl px-3 col-start-2 justify-self-center md:col-span-1 md:row-span-3 flex items-center">
+          <p>{taskName}</p>
+        </div>
+        <div className="flex-1 text-gray-400 col-start-2 row-start-2 md:row-start-1 justify-self-center md:col-start-3 md:row-span-3 flex items-center">
+          <p>
+            Set new date:
+          </p>
+          <Input type="date" required date/>
+        </div>
+
+      </>
+    ) : (
+      <>
+        {isTaskOverdue(taskDeadline) ? (
+          <div className="col-start-1 row-span-3 md:row-start-1 self-center">
+            <Button
+              reload
+              type="button"
+              onClick={() => setIsUpdating(true)}
+            >
+              <RxReload />
+            </Button>
+          </div>
+        ) : (
+          <div className="col-start-1 row-span-3 md:row-start-1 self-center">
+            <Button
+              done
+              type="button"
+              onClick={() => handleTaskDone()}
+            >
+              <TbCheck />
+            </Button>
+          </div>
+        )}
+        <div className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 uppercase tracking-wide text-lg sm:text-xl px-3 col-start-2 justify-self-center md:col-span-1 md:row-span-3 flex items-center">
+          <p>{taskName}</p>
+        </div>
+        <div className="flex-1 text-gray-400 col-start-2 row-start-2 md:row-start-1 justify-self-center md:col-start-3 md:row-span-3 flex items-center">
           <p>
             {!isTaskOverdue(taskDeadline)
               ? getTimeLeft(taskDeadline)
               : `You missed this task. ${getTimeLeft(taskDeadline)}`}
           </p>
-      </div>
-      <div className="col-start-3  md:col-start-4 row-span-3 self-center">
-        <Button deletes type="button" onClick={() => handleTaskDelete()}>
-          <VscClose />
-        </Button>
-      </div>
-    </li>
-  );
+        </div>
+        <div className="col-start-3  md:col-start-4 row-span-3 self-center">
+          <Button
+            deletes
+            type="button"
+            onClick={() => handleTaskDelete()}
+          >
+            <VscClose />
+          </Button>
+        </div>
+      </>
+    )}
+  </li>
+);
+
 }
 
 export default Task;

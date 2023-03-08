@@ -1,5 +1,5 @@
 import { useRef, FormEvent, useEffect, useState } from "react";
-import { collection, addDoc, onSnapshot, doc, deleteDoc,query,where } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, deleteDoc ,updateDoc,query,where } from "firebase/firestore";
 import { firestore } from "../firebase";
 import NewTaskForm from "../components/NewTaskForm";
 import Task from "../components/Task";
@@ -12,6 +12,7 @@ import { useLocation } from "react-router-dom";
 
 function App(): JSX.Element {
   const [data, setData] = useState<any[]>([]);
+
   const location = useLocation();
   const userName = new URLSearchParams(location.search).get("user")?.toString();
   
@@ -33,6 +34,7 @@ function App(): JSX.Element {
 
   const taskNameRef = useRef<HTMLInputElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
+  const newDateRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,6 +63,15 @@ function App(): JSX.Element {
   };
   
 
+  const handleUpdate = async (id: string) => {
+    try {
+      await updateDoc(doc(firestore, "Tasks", id),{taskName: newDateRef});
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  
+
 const renderedTaskList = data
   .slice()
   .sort((b, a) => new Date(b.taskDeadline).getTime() - new Date(a.taskDeadline).getTime())
@@ -71,6 +82,7 @@ const renderedTaskList = data
       taskName={item.taskName}
       taskDeadline={item.taskDeadline}
       handleDelete={handleDelete}
+      handleUpdate={handleUpdate}
     />
   ));
 
