@@ -65,7 +65,7 @@ function App(): JSX.Element {
 
   const handleUpdate = async (id: string) => {
     try {
-      await updateDoc(doc(firestore, "Tasks", id),{taskName: newDateRef});
+      await updateDoc(doc(firestore, "Tasks", id),{taskDeadline: newDateRef.current?.value});
     } catch (e) {
       console.log(e);
     }
@@ -83,6 +83,7 @@ const renderedTaskList = data
       taskDeadline={item.taskDeadline}
       handleDelete={handleDelete}
       handleUpdate={handleUpdate}
+      newDateRef={newDateRef}
     />
   ));
 

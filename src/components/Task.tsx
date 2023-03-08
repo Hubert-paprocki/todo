@@ -11,6 +11,7 @@ interface TaskProps {
   taskDeadline: Date;
   handleDelete: (id: string) => Promise<void>;
   handleUpdate: (id: string) => Promise<void>;
+  newDateRef: React.RefObject<HTMLInputElement>;
 }
 
 function isTaskOverdue(taskDeadline: Date): boolean {
@@ -47,7 +48,7 @@ function getTimeLeft(taskDeadline: Date): string | null {
 }
 
 
-function Task({ id, taskDeadline, taskName, handleDelete,handleUpdate }: TaskProps) {
+function Task({ id, taskDeadline, taskName, handleDelete,handleUpdate,newDateRef }: TaskProps) {
   const [isDone, setIsDone] = useState<string>("");
   const [isUpdating, setIsUpdating] = useState(false)
 
@@ -64,6 +65,7 @@ function Task({ id, taskDeadline, taskName, handleDelete,handleUpdate }: TaskPro
   };
   const handleTaskUpdate = async () => {
     await handleUpdate(id);
+    setIsUpdating(false)
   };
 
   let classes =
@@ -103,7 +105,7 @@ return (
           <p>
             Set new date:
           </p>
-          <Input type="date" required date/>
+          <Input type="date" required date refs={newDateRef}/>
         </div>
 
       </>
