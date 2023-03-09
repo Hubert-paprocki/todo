@@ -35,7 +35,7 @@ function Button({
 			"flex  text-2xl hover:scale-110 duration-200 text-black font-bold rounded-full  bg-stone-400 dark:bg-slate-700 hover:bg-stone-500 dark:hover:bg-slate-600 text-slate-200 p-[4.98px]";
 	} else if (themeSwitch) {
 		classes =
-			"p-2.5 text-2xl rounded-full border-2 bg-gray-200 dark:bg-gray-800 border-gray-800 dark:border-slate-300 text-gray-800 dark:text-slate-300 duration-150 ";
+			"p-2.5 text-2xl rounded-full border-2 bg-gray-200 dark:bg-gray-800 border-gray-800 dark:border-slate-300 text-gray-800 dark:text-slate-300 duration-150 relative z-50";
 	}
 
 	return (
