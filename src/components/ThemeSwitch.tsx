@@ -1,28 +1,48 @@
-import { MdOutlineWbSunny, MdOutlineNightlight} from "react-icons/md";
-import { useState, useEffect } from "react";
+import { MdOutlineWbSunny, MdOutlineNightlight } from "react-icons/md";
+import { useState, useEffect, useCallback } from "react";
 import Button from "./Button";
 
-
 function ThemeSwitch(): JSX.Element {
-  const [theme, setTheme] = useState< "dark" | "light" | null>(null);
+	const [theme, setTheme] = useState<"light" | "dark">();
 
-  useEffect(() => {
-    window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')
-  }, [])
+	useEffect(() => {
+		const storedTheme = sessionStorage.getItem("theme");
+		if (
+			storedTheme === "dark" ||
+			(!storedTheme &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches)
+		) {
+			setTheme("dark");
+		} else {
+			setTheme("light");
+		}
+	}, []);
 
-  useEffect(() => {
-    theme === "dark" ? document.documentElement.classList.add("dark") : document.documentElement.classList.remove("dark")
-  }, [theme]);
+	useEffect(() => {
+		if (theme) {
+			const el = document.documentElement.classList;
+			if (theme === "dark") {
+				el.add("dark");
+			} else {
+				el.remove("dark");
+			}
+			sessionStorage.setItem("theme", theme);
+		}
+	}, [theme]);
 
-  const handleThemeSwitch = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+	const handleThemeSwitch = useCallback(() => {
+		setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
+	}, []);
 
-
-  return (
-    <Button onClick={handleThemeSwitch} themeSwitch login>{theme === "dark" ? <MdOutlineWbSunny /> : <div className="rotate-[184deg] translate-x-px -translate-y-[0.5px]"><MdOutlineNightlight/></div>}</Button>
-
-  );
+	return (
+		<Button onClick={handleThemeSwitch} themeSwitch>
+			{theme === "light" ? (
+				<MdOutlineWbSunny />
+			) : (
+				<MdOutlineNightlight className="rotate-[184deg]" />
+			)}
+		</Button>
+	);
 }
 
 export default ThemeSwitch;

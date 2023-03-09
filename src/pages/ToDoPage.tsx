@@ -1,107 +1,113 @@
 import { useRef, FormEvent, useEffect, useState } from "react";
-import { collection, addDoc, onSnapshot, doc, deleteDoc ,updateDoc,query,where } from "firebase/firestore";
+import {
+	collection,
+	addDoc,
+	onSnapshot,
+	doc,
+	deleteDoc,
+	updateDoc,
+	query,
+	where,
+} from "firebase/firestore";
 import { firestore } from "../firebase";
 import NewTaskForm from "../components/NewTaskForm";
 import Task from "../components/Task";
-import BackgroundImage from "../images/bgimg.jpg"
+import BackgroundImage from "../images/bgimg.jpg";
 import Welcome from "../components/Welcome";
 import Footer from "../components/Footer";
 import Tip from "../components/Tip";
 import { useLocation } from "react-router-dom";
-import ThemeSwitch from "../components/ThemeSwitch";
-
 
 function App(): JSX.Element {
-  const [data, setData] = useState<any[]>([]);
+	const [data, setData] = useState<any[]>([]);
 
-  const location = useLocation();
-  const userName = new URLSearchParams(location.search).get("user")?.toString();
-  
+	const location = useLocation();
+	const userName = new URLSearchParams(location.search).get("user")?.toString();
 
-  useEffect(() => {
-    const q = query(collection(firestore, "Tasks"), where("userName", "==", userName));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setData(newData);
-    });
-  
-    return () => unsubscribe();
-  }, [userName]);
+	useEffect(() => {
+		const q = query(
+			collection(firestore, "Tasks"),
+			where("userName", "==", userName)
+		);
+		const unsubscribe = onSnapshot(q, (querySnapshot) => {
+			const newData = querySnapshot.docs.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
+			}));
+			setData(newData);
+		});
 
-  
-  
-  
-  
+		return () => unsubscribe();
+	}, [userName]);
 
-  const taskNameRef = useRef<HTMLInputElement>(null);
-  const dateRef = useRef<HTMLInputElement>(null);
-  const newDateRef = useRef<HTMLInputElement>(null);
+	const taskNameRef = useRef<HTMLInputElement>(null);
+	const dateRef = useRef<HTMLInputElement>(null);
+	const newDateRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = {
-      taskName: taskNameRef.current?.value,
-      taskDeadline: dateRef.current?.value,
-      userName: userName,
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const data = {
+			taskName: taskNameRef.current?.value,
+			taskDeadline: dateRef.current?.value,
+			userName,
+		};
+		await addDoc(collection(firestore, "Tasks"), data);
+	};
 
-    };
+	const handleDelete = async (id: string) => {
+		setTimeout(async () => {
+			await deleteDoc(doc(firestore, "Tasks", id));
+		}, 600);
+	};
 
-    try {
-      await addDoc(collection(firestore, "Tasks"), data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+	const handleUpdate = async (id: string) => {
+		await updateDoc(doc(firestore, "Tasks", id), {
+			taskDeadline: newDateRef.current?.value,
+		});
+	};
 
-  const handleDelete = async (id: string) => {
-    try {
-      setTimeout(async () => {
-        await deleteDoc(doc(firestore, "Tasks", id));
-      }, 600); 
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  
+	const renderedTaskList = data
+		.slice()
+		.sort(
+			(b, a) =>
+				new Date(b.taskDeadline).getTime() - new Date(a.taskDeadline).getTime()
+		)
+		.map((item) => (
+			<Task
+				key={item.id}
+				id={item.id}
+				taskName={item.taskName}
+				taskDeadline={item.taskDeadline}
+				handleDelete={handleDelete}
+				handleUpdate={handleUpdate}
+				newDateRef={newDateRef}
+			/>
+		));
 
-  const handleUpdate = async (id: string) => {
-    try {
-      await updateDoc(doc(firestore, "Tasks", id),{taskDeadline: newDateRef.current?.value});
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  
-
-const renderedTaskList = data
-  .slice()
-  .sort((b, a) => new Date(b.taskDeadline).getTime() - new Date(a.taskDeadline).getTime())
-  .map((item) => (
-    <Task
-      key={item.id}
-      id={item.id}
-      taskName={item.taskName}
-      taskDeadline={item.taskDeadline}
-      handleDelete={handleDelete}
-      handleUpdate={handleUpdate}
-      newDateRef={newDateRef}
-    />
-  ));
-
-  
-  return (
-    <>
-      <div className="bg-gray-300 dark:bg-gray-900 bg-gradient-to-br from-pink-400/50 dark:from-pink-900/30 via-gray-300 dark:via-gray-900 to-indigo-100 dark:to-indigo-900/10  h-screen overflow-hidden text-stone-800 dark:text-slate-200 xs:p-3 flex flex-col items-center scheme-dark">
-        <div className="h-max 5 w-full relative xs:rounded-2xl flex flex-col items-center"><img src={BackgroundImage} alt="background" className="h-5/6 w-full object-cover absolute xs:rounded-2xl opacity-75 dark:opacity-50 drop-shadow-2xl dark:brightness-75" /> <Welcome username={userName} />
-        <NewTaskForm onSubmit={handleSubmit} taskNameRef={taskNameRef} dateRef={dateRef} /></div>
-        <ul className="overflow-y-scroll w-full scrollbar-hide">
-            {renderedTaskList}
-        </ul>
-        <Tip/>
-      </div>
-      <Footer/>
-    </>
-  );
+	return (
+		<>
+			<div className="bg-gray-300 dark:bg-gray-900 bg-gradient-to-br from-pink-400/50 dark:from-pink-900/30 via-gray-300 dark:via-gray-900 to-indigo-100 dark:to-indigo-900/10  h-screen overflow-hidden text-stone-800 dark:text-slate-200 xs:p-3 flex flex-col items-center scheme-dark">
+				<div className="h-max 5 w-full relative xs:rounded-2xl flex flex-col items-center">
+					<img
+						src={BackgroundImage}
+						alt="background"
+						className="h-5/6 w-full object-cover absolute xs:rounded-2xl opacity-75 dark:opacity-50 drop-shadow-2xl dark:brightness-75"
+					/>
+					<Welcome username={userName} />
+					<NewTaskForm
+						onSubmit={handleSubmit}
+						taskNameRef={taskNameRef}
+						dateRef={dateRef}
+					/>
+				</div>
+				<ul className="overflow-y-scroll w-full scrollbar-hide">
+					{renderedTaskList}
+				</ul>
+				<Tip />
+			</div>
+			<Footer />
+		</>
+	);
 }
 
 export default App;
