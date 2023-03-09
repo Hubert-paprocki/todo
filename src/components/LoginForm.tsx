@@ -1,6 +1,7 @@
 import { FormEvent } from "react";
 import Button from "./Button";
 import Input from "./Input";
+import ThemeSwitch from "../components/ThemeSwitch"
 
 interface LoginFormProps {
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
@@ -9,10 +10,13 @@ interface LoginFormProps {
 
 function LoginForm({ onSubmit, userNameRef }: LoginFormProps) {
   return (
-    <form
-      onSubmit={onSubmit}
-      className="bg-gray-200 dark:bg-gray-800  sm:m-4 py-3 px-6 md:py-6 md:px-12 rounded-2xl flex flex-col gap-5 sm:gap-8 md:gap-10 max-w-3xl shadow-xl z-10 relative text-center items-center"
+    <div
+      className="bg-gray-200 dark:bg-gray-800  sm:m-4 py-3 px-6 md:py-6 md:px-12 rounded-2xl max-w-3xl shadow-xl relative"
     >
+      <div className="absolute top-2 right-2 sm:top-5 sm:right-5">
+        <ThemeSwitch/>
+      </div>
+      <form onSubmit={onSubmit} className="flex flex-col gap-5 sm:gap-8 md:gap-10  z-10 relative text-center items-center">
         <p className="font-bold capitalize text-2xl text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-cyan-700 dark:from-violet-500 dark:to-cyan-500 tracking-wider">
           Hi there!
         </p>
@@ -26,7 +30,8 @@ function LoginForm({ onSubmit, userNameRef }: LoginFormProps) {
       <Button type={"submit"} primary>
         LogIn
       </Button>
-    </form>
+      </form>
+     </div>
   );
 }
 

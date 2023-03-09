@@ -6,11 +6,13 @@ interface ButtonProps {
     done?: boolean;
 	deletes?: boolean;
 	reload?: boolean;
+	themeSwitch?: boolean;
+	login?: boolean;
 }
 
-function Button({ children,type, onClick,primary,done,deletes,reload}: ButtonProps) {
+function Button({ children,type, onClick,primary,done,deletes,reload,themeSwitch,login}: ButtonProps) {
 	
-	let classes = "leading-5 py-0.5 px-0 sm:px-3 md:px-4 md:py-2 rounded hover:scale-105 duration-200 uppercase";
+	let classes = "leading-5 py-0.5 px-3 md:px-4 md:py-2 rounded hover:scale-105 duration-200 uppercase";
 	if (primary) {
 		classes += " text-sm sm:text-base font-medium sm:font-semibold text-slate-200 bg-gradient-to-r from-indigo-500 to-rose-500 dark:from-violet-600 dark:to-cyan-600";
 	} else if (done) {
@@ -21,6 +23,10 @@ function Button({ children,type, onClick,primary,done,deletes,reload}: ButtonPro
 	else if (reload) {
 		classes = "flex  text-2xl hover:scale-110 duration-200 text-black font-bold rounded-full  bg-stone-400 dark:bg-slate-700 hover:bg-stone-500 dark:hover:bg-slate-600 text-slate-200 p-[4.98px]";
 	} 
+	else if (themeSwitch) {
+		classes="p-2.5 text-2xl rounded-full border-2 bg-gray-200 dark:bg-gray-800 border-gray-800 dark:border-slate-300 text-gray-800 dark:text-slate-300 duration-150 "
+	}
+
 	return (
 		<button type={type} onClick={onClick} className={classes}>
 			{children}

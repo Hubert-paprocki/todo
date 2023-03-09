@@ -8,6 +8,7 @@ import Welcome from "../components/Welcome";
 import Footer from "../components/Footer";
 import Tip from "../components/Tip";
 import { useLocation } from "react-router-dom";
+import ThemeSwitch from "../components/ThemeSwitch";
 
 
 function App(): JSX.Element {
@@ -93,7 +94,7 @@ const renderedTaskList = data
       <div className="bg-gray-300 dark:bg-gray-900 bg-gradient-to-br from-pink-400/50 dark:from-pink-900/30 via-gray-300 dark:via-gray-900 to-indigo-100 dark:to-indigo-900/10  h-screen overflow-hidden text-stone-800 dark:text-slate-200 xs:p-3 flex flex-col items-center scheme-dark">
         <div className="h-max 5 w-full relative xs:rounded-2xl flex flex-col items-center"><img src={BackgroundImage} alt="background" className="h-5/6 w-full object-cover absolute xs:rounded-2xl opacity-75 dark:opacity-50 drop-shadow-2xl dark:brightness-75" /> <Welcome username={userName} />
         <NewTaskForm onSubmit={handleSubmit} taskNameRef={taskNameRef} dateRef={dateRef} /></div>
-          <ul className="overflow-y-scroll w-full scrollbar-hide">
+        <ul className="overflow-y-scroll w-full scrollbar-hide">
             {renderedTaskList}
         </ul>
         <Tip/>
