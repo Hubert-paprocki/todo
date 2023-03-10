@@ -20,7 +20,7 @@ function Button({
 	themeSwitch,
 }: ButtonProps) {
 	let classes =
-		"leading-5 py-0.5 px-3 md:px-4 md:py-2 rounded hover:scale-105 duration-200 uppercase";
+		"leading-5 py-1 px-3 md:px-4 md:py-2 rounded hover:scale-105 duration-200 uppercase";
 	if (primary) {
 		classes +=
 			" text-sm sm:text-base font-medium sm:font-semibold text-slate-200 bg-gradient-to-r from-indigo-500 to-rose-500 dark:from-violet-600 dark:to-cyan-600";

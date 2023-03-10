@@ -20,9 +20,20 @@ import { useLocation } from "react-router-dom";
 
 function App(): JSX.Element {
 	const [data, setData] = useState<any[]>([]);
-
 	const location = useLocation();
 	const userName = new URLSearchParams(location.search).get("user")?.toString();
+
+	useEffect(() => {
+		function handleBeforeUnload(event: BeforeUnloadEvent) {
+			event.preventDefault();
+		}
+
+		window.addEventListener("beforeunload", handleBeforeUnload);
+
+		return () => {
+			window.removeEventListener("beforeunload", handleBeforeUnload);
+		};
+	}, [location]);
 
 	useEffect(() => {
 		const q = query(
@@ -86,13 +97,15 @@ function App(): JSX.Element {
 
 	return (
 		<>
-			<div className="bg-gray-300 dark:bg-gray-900 bg-gradient-to-br from-pink-400/50 dark:from-pink-900/30 via-gray-300 dark:via-gray-900 to-indigo-100 dark:to-indigo-900/10  h-screen overflow-hidden text-stone-800 dark:text-slate-200 xs:p-3 flex flex-col items-center scheme-dark">
-				<div className="h-max 5 w-full relative xs:rounded-2xl flex flex-col items-center">
-					<img
-						src={BackgroundImage}
-						alt="background"
-						className="h-5/6 w-full object-cover absolute xs:rounded-2xl opacity-75 dark:opacity-50 drop-shadow-2xl dark:brightness-75"
-					/>
+			<div className="bg-gray-300 dark:bg-gray-900 bg-gradient-to-br from-pink-400/50 dark:from-pink-900/30 via-gray-300 dark:via-gray-900 to-indigo-100 dark:to-indigo-900/10  h-[100svh] overflow-hidden text-stone-800 dark:text-slate-200 xs:p-3 flex flex-col items-center scheme-dark">
+				<div className="h-max 5 w-full relative xs:rounded-2xl flex flex-col items-center z-40">
+					<div className="bg-gray-300 dark:bg-gray-900 bg-gradient-to-br from-pink-400/50 dark:from-pink-900/30 via-gray-300 dark:via-gray-900 to-indigo-100 dark:to-indigo-900/10 h-5/6 w-full object-cover absolute xs:rounded-2xl ">
+						<img
+							src={BackgroundImage}
+							alt="background"
+							className="h-full w-full object-cover absolute xs:rounded-2xl opacity-70 dark:opacity-50 drop-shadow-2xl brightness-105 dark:brightness-75"
+						/>
+					</div>
 					<Welcome username={userName} />
 					<NewTaskForm
 						onSubmit={handleSubmit}
@@ -100,7 +113,7 @@ function App(): JSX.Element {
 						dateRef={dateRef}
 					/>
 				</div>
-				<ul className="overflow-y-scroll w-full scrollbar-hide">
+				<ul className="overflow-y-scroll w-full scrollbar-hide px-2 flex flex-col items-center pb-8 xs:pb-6 pt-12 -mt-10">
 					{renderedTaskList}
 				</ul>
 				<Tip />

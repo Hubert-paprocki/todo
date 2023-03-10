@@ -13,7 +13,7 @@ function Footer() {
 			</p>
 			<div className="w-full max-w-xl  border-l-none border-neutral-300 dark:border-neutral-500 pl-0 md:pl-12 md:w-1/2 md:border-l-2  pt-0 md:pt-5">
 				<p className="font-medium dark:font-normal">
-					This website was made by{" "}
+					This website was made by
 					<span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-rose-600 dark:from-violet-500 dark:to-cyan-500 text-xl tracking-wide ">
 						Hubert Paprocki
 					</span>

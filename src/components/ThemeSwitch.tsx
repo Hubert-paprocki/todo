@@ -39,7 +39,7 @@ function ThemeSwitch(): JSX.Element {
 			{theme === "light" ? (
 				<MdOutlineWbSunny />
 			) : (
-				<MdOutlineNightlight className="rotate-[184deg]" />
+				<MdOutlineNightlight className="rotate-[188deg]" />
 			)}
 		</Button>
 	);

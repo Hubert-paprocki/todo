@@ -27,7 +27,9 @@ function NewTaskForm({ onSubmit, taskNameRef, dateRef }: NewTaskFormProps) {
 					Add task
 				</Button>
 			</form>
-			<ThemeSwitch />
+			<div className="self-center hidden xs:block">
+				<ThemeSwitch />
+			</div>
 		</div>
 	);
 }
