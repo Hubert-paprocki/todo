@@ -35,7 +35,7 @@ function ThemeSwitch(): JSX.Element {
 	}, []);
 
 	return (
-		<Button onClick={handleThemeSwitch} themeSwitch>
+		<Button type={"button"} onClick={handleThemeSwitch} themeSwitch>
 			{theme === "light" ? (
 				<MdOutlineWbSunny />
 			) : (

@@ -24,18 +24,6 @@ function App(): JSX.Element {
 	const userName = new URLSearchParams(location.search).get("user")?.toString();
 
 	useEffect(() => {
-		function handleBeforeUnload(event: BeforeUnloadEvent) {
-			event.preventDefault();
-		}
-
-		window.addEventListener("beforeunload", handleBeforeUnload);
-
-		return () => {
-			window.removeEventListener("beforeunload", handleBeforeUnload);
-		};
-	}, [location]);
-
-	useEffect(() => {
 		const q = query(
 			collection(firestore, "Tasks"),
 			where("userName", "==", userName)

@@ -21,7 +21,7 @@ function LoginForm({ onSubmit, userNameRef }: LoginFormProps) {
 				<p className="font-bold capitalize text-2xl text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-cyan-700 dark:from-violet-500 dark:to-cyan-500 tracking-wider">
 					Hi there!
 				</p>
-				<p className="border-b-2 pb-4 border-slate-600">
+				<p className="border-b-2 pb-4 border-gray-400 dark:border-slate-600">
 					To get started, we&apos;d like to create a user account for you so
 					that we can remember your tasks across sessions. Please provide us
 					with your name or nickname in the reply to this message. Once we have
