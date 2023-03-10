@@ -51,6 +51,12 @@ function App(): JSX.Element {
 			userName,
 		};
 		await addDoc(collection(firestore, "Tasks"), data);
+		if (taskNameRef.current) {
+			taskNameRef.current.value = "";
+		}
+		if (dateRef.current) {
+			dateRef.current.value = new Date().toISOString().substring(0, 10);
+		}
 	};
 
 	const handleDelete = async (id: string) => {
@@ -103,7 +109,7 @@ function App(): JSX.Element {
 						/>
 					</div>
 				</div>
-				<ul className="overflow-y-scroll w-full scrollbar-hide px-2 flex flex-col items-center pb-8 xs:pb-6 pt-12 -mt-10">
+				<ul className="overflow-y-scroll w-full scrollbar-hide px-2 flex flex-col items-center pb-8 pt-12 -mt-10">
 					{renderedTaskList}
 				</ul>
 				<Tip />

@@ -18,7 +18,7 @@ function LoginForm({ onSubmit, userNameRef }: LoginFormProps) {
 				onSubmit={onSubmit}
 				className="flex flex-col gap-5 sm:gap-8 md:gap-10 text-center items-center"
 			>
-				<p className="font-bold capitalize text-2xl text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-cyan-700 dark:from-violet-500 dark:to-cyan-500 tracking-wider">
+				<p className="font-bold capitalize text-2xl text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-cyan-700 from-indigo-600 to-rose-600 dark:from-violet-400 dark:to-cyan-400 tracking-wider ">
 					Hi there!
 				</p>
 				<p className="border-b-2 pb-4 border-gray-400 dark:border-slate-600">

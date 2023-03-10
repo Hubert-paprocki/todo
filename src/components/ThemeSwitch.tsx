@@ -1,4 +1,4 @@
-import { MdOutlineWbSunny, MdOutlineNightlight } from "react-icons/md";
+import { BsSun, BsMoon } from "react-icons/bs";
 import { useState, useEffect, useCallback } from "react";
 import Button from "./Button";
 
@@ -39,9 +39,9 @@ function ThemeSwitch(): JSX.Element {
 	return (
 		<Button type={"button"} onClick={handleThemeSwitch} themeSwitch>
 			{theme === "light" ? (
-				<MdOutlineWbSunny />
+				<BsSun />
 			) : (
-				<MdOutlineNightlight className="rotate-[188deg]" />
+				<BsMoon className="rotate-[222deg] -translate-x-[1.75px] " />
 			)}
 		</Button>
 	);
