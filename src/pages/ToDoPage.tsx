@@ -62,7 +62,7 @@ function App(): JSX.Element {
 	const handleDelete = async (id: string) => {
 		setTimeout(async () => {
 			await deleteDoc(doc(firestore, "Tasks", id));
-		}, 600);
+		}, 650);
 	};
 
 	const handleUpdate = async (id: string) => {
