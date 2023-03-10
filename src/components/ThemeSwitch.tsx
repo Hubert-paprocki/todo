@@ -23,8 +23,10 @@ function ThemeSwitch(): JSX.Element {
 			const el = document.documentElement.classList;
 			if (theme === "dark") {
 				el.add("dark");
+				el.add("dark-scheme");
 			} else {
 				el.remove("dark");
+				el.remove("dark-scheme");
 			}
 			sessionStorage.setItem("theme", theme);
 		}

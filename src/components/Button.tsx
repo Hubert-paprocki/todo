@@ -7,6 +7,7 @@ interface ButtonProps {
 	deletes?: boolean;
 	reload?: boolean;
 	themeSwitch?: boolean;
+	downBtn?: boolean;
 }
 
 function Button({
@@ -18,12 +19,13 @@ function Button({
 	deletes,
 	reload,
 	themeSwitch,
+	downBtn,
 }: ButtonProps) {
 	let classes =
 		"leading-5 py-1 px-3 md:px-4 md:py-2 rounded hover:scale-105 duration-200 uppercase";
 	if (primary) {
 		classes +=
-			" text-sm sm:text-base font-medium sm:font-semibold text-slate-200 bg-gradient-to-r from-indigo-500 to-rose-500 dark:from-violet-600 dark:to-cyan-600";
+			" text-sm sm:text-base font-medium sm:font-semibold text-slate-200 bg-gradient-to-r from-indigo-500 to-rose-500 dark:from-violet-600 dark:to-cyan-600 flex-none ";
 	} else if (done) {
 		classes =
 			"flex text-[1.6251rem] hover:scale-110 duration-200 text-black font-bold rounded-full bg-emerald-500/90 dark:bg-emerald-500/70 hover:bg-emerald-600 dark:hover:bg-emerald-700 p-[4px] text-slate-200";
@@ -35,7 +37,10 @@ function Button({
 			"flex  text-2xl hover:scale-110 duration-200 text-black font-bold rounded-full  bg-stone-400 dark:bg-slate-700 hover:bg-stone-500 dark:hover:bg-slate-600 text-slate-200 p-[4.98px]";
 	} else if (themeSwitch) {
 		classes =
-			"p-2.5 text-2xl rounded-full border-2 bg-gray-200 dark:bg-gray-800 border-gray-800 dark:border-slate-300 text-gray-800 dark:text-slate-300 duration-150 relative z-50";
+			"p-2.5 text-2xl rounded-full border-2 bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700 dark:bg-gray-800 border-gray-700 dark:border-slate-400 text-gray-700 dark:text-slate-400 duration-200 relative z-50";
+	} else if (downBtn) {
+		classes =
+			"text-4xl rounded-full p-1 hover:bg-gray-200 text-stone-600 dark:text-slate-300 dark:hover:bg-slate-700 duration-300";
 	}
 
 	return (
