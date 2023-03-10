@@ -107,7 +107,7 @@ function Task({
 							<TbCheck />
 						</Button>
 					</div>
-					<div className="col-span-full md:col-span-1 text-center place-self-center">
+					<div className="col-span-full md:row-span-3 md:col-span-1 text-center md:pr-4 justify-self-center flex">
 						<p className={taskNameClasses}>{taskName}</p>
 					</div>
 					<div className="flex-1 text-gray-400 col-start-2 row-start-2 md:row-start-1  md:col-start-3 md:row-span-3 flex items-center justify-evenly ">
