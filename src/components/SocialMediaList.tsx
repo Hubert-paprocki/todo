@@ -13,19 +13,19 @@ const ListedSocialMedias: ListedSocialMedia[] = [
 	{
 		id: 1,
 		name: `Facebook`,
-		icon: <RiFacebookFill/>,
+		icon: <RiFacebookFill />,
 		link: `https://www.facebook.com/hbrt.pa/`,
 	},
 	{
 		id: 2,
 		name: `Github`,
-		icon: <RiGithubFill/>,
+		icon: <RiGithubFill />,
 		link: `https://github.com/X-Tripen`,
 	},
 	{
 		id: 3,
 		name: `LinkedIn`,
-		icon: <RiLinkedinFill/>,
+		icon: <RiLinkedinFill />,
 		link: `https://www.linkedin.com/in/hubert-paprocki-25b618236/`,
 	},
 ];
@@ -36,7 +36,6 @@ function SocialMediaList() {
 			<SocialMediaItem
 				key={socialMedia.id}
 				img={socialMedia.icon}
-				name={socialMedia.name}
 				link={socialMedia.link}
 			></SocialMediaItem>
 		);
