@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-
 interface SocialMediaItemProps {
 	img: ReactNode;
 	name: string;

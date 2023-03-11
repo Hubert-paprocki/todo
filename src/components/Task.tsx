@@ -60,13 +60,11 @@ function Task({
 
 	const handleTaskDelete = async () => {
 		setIsDone("no");
-		console.log(isDone);
 		await handleDelete(id);
 	};
 
 	const handleTaskDone = async () => {
 		setIsDone("yes");
-		console.log(isDone);
 		await handleDelete(id);
 	};
 

@@ -2,7 +2,6 @@ import { FormEvent } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import ThemeSwitch from "../components/ThemeSwitch";
-
 interface LoginFormProps {
 	onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
 	userNameRef: React.RefObject<HTMLInputElement>;
@@ -18,7 +17,7 @@ function LoginForm({ onSubmit, userNameRef }: LoginFormProps) {
 				onSubmit={onSubmit}
 				className="flex flex-col gap-5 sm:gap-8 md:gap-10 text-center items-center"
 			>
-				<p className="font-bold capitalize text-2xl text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-cyan-700 from-indigo-600 to-rose-600 dark:from-violet-400 dark:to-cyan-400 tracking-wider ">
+				<p className="font-bold capitalize text-2xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-rose-600 dark:from-violet-400 dark:to-cyan-400 tracking-wider ">
 					Hi there!
 				</p>
 				<p className="border-b-2 pb-4 border-gray-400 dark:border-slate-600">
@@ -28,7 +27,7 @@ function LoginForm({ onSubmit, userNameRef }: LoginFormProps) {
 					this information, we can create your user account in our database.
 					Thank you!
 				</p>
-				<Input placeholder={"Type your username"} refs={userNameRef} />
+				<Input placeholder={"Type your username"} refs={userNameRef} required />
 				<Button type={"submit"} primary>
 					LogIn
 				</Button>

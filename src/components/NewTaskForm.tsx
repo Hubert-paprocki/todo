@@ -2,7 +2,6 @@ import { FormEvent } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import ThemeSwitch from "./ThemeSwitch";
-
 interface NewTaskFormProps {
 	onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
 	taskNameRef: React.RefObject<HTMLInputElement>;
@@ -19,7 +18,7 @@ function NewTaskForm({ onSubmit, taskNameRef, dateRef }: NewTaskFormProps) {
 				<Input
 					type="text"
 					refs={taskNameRef}
-					required
+					required={true}
 					placeholder="What is on your mind?"
 				/>
 				<div className="col-start-1">
