@@ -4,6 +4,7 @@ import { firestore } from "../firebase";
 import Button from "./Button";
 import Input from "./Input";
 import ThemeSwitch from "./ThemeSwitch";
+
 interface NewTaskFormProps {
 	taskNameRef: React.RefObject<HTMLInputElement>;
 	dateRef: React.RefObject<HTMLInputElement>;
@@ -12,12 +13,28 @@ interface NewTaskFormProps {
 
 function NewTaskForm({ taskNameRef, dateRef, userName }: NewTaskFormProps) {
 	const [isInputValid, setInputValid] = useState(true);
+	const [isDateValid, setDateValid] = useState(true);
+
+	function isValidDate(dateString: string) {
+		const regEx = /^\d{4}-\d{2}-\d{2}$/;
+		if (!dateString.match(regEx)) return false;
+		const d = new Date(dateString);
+		const dNum = d.getTime();
+		if (!dNum && dNum !== 0) return false;
+		return d.toISOString().slice(0, 10) === dateString;
+	}
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+		setInputValid(true);
+		setDateValid(true);
 		e.preventDefault();
-		if (taskNameRef.current?.value.length === 0) {
+		if (!taskNameRef.current?.value) {
 			setInputValid(false);
-		} else {
+		}
+		if (!isValidDate(dateRef.current?.value || "")) {
+			setDateValid(false);
+		}
+		if (taskNameRef.current?.value && dateRef.current?.value) {
 			const data = {
 				taskName: taskNameRef.current?.value,
 				taskDeadline: dateRef.current?.value,
@@ -48,7 +65,7 @@ function NewTaskForm({ taskNameRef, dateRef, userName }: NewTaskFormProps) {
 					errorMessage={"Please enter task name"}
 				/>
 				<div className="col-start-1">
-					<Input type="date" refs={dateRef} required date />
+					<Input type="date" refs={dateRef} invalid={!isDateValid} date />
 				</div>
 				<div className="row-span-2 row-start-1 col-start-2">
 					<Button primary type={"submit"}>
@@ -56,7 +73,7 @@ function NewTaskForm({ taskNameRef, dateRef, userName }: NewTaskFormProps) {
 					</Button>
 				</div>
 			</form>
-			<div className="self-center hidden xs:block">
+			<div className="self-center hidden sm:block">
 				<ThemeSwitch />
 			</div>
 		</div>
