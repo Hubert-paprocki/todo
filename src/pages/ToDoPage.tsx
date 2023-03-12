@@ -1,7 +1,6 @@
-import { useRef, FormEvent, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
 	collection,
-	addDoc,
 	onSnapshot,
 	doc,
 	deleteDoc,
@@ -42,22 +41,6 @@ function App(): JSX.Element {
 	const taskNameRef = useRef<HTMLInputElement>(null);
 	const dateRef = useRef<HTMLInputElement>(null);
 	const newDateRef = useRef<HTMLInputElement>(null);
-
-	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const data = {
-			taskName: taskNameRef.current?.value,
-			taskDeadline: dateRef.current?.value,
-			userName,
-		};
-		await addDoc(collection(firestore, "Tasks"), data);
-		if (taskNameRef.current) {
-			taskNameRef.current.value = "";
-		}
-		if (dateRef.current) {
-			dateRef.current.value = new Date().toISOString().substring(0, 10);
-		}
-	};
 
 	const handleDelete = async (id: string) => {
 		setTimeout(async () => {
@@ -103,9 +86,9 @@ function App(): JSX.Element {
 						</div>
 						<Welcome username={userName} />
 						<NewTaskForm
-							onSubmit={handleSubmit}
 							taskNameRef={taskNameRef}
 							dateRef={dateRef}
+							userName={userName}
 						/>
 					</div>
 				</div>

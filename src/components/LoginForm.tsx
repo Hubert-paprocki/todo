@@ -37,15 +37,16 @@ function LoginForm() {
 					this information, we can create your user account in our database.
 					Thank you!
 				</p>
-				<Input
-					placeholder={"Type your username"}
-					refs={userNameRef}
-					// add the invalid prop and error message if the input is invalid
-					invalid={!isInputValid}
-					errorMessage={"Please enter a valid username"}
-				/>
+				<div className="w-64 md:w-72">
+					<Input
+						placeholder={"Type your username"}
+						refs={userNameRef}
+						invalid={!isInputValid}
+						errorMessage={"Please enter a valid username"}
+					/>
+				</div>
 				<Button type={"submit"} primary>
-					LogIn
+					login
 				</Button>
 			</form>
 		</div>
