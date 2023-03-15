@@ -4,51 +4,57 @@ import { TbCheck } from "react-icons/tb";
 import { RxReload } from "react-icons/rx";
 import Button from "./Button";
 import Input from "./Input";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { firestore } from "../firebase";
 
 interface TaskProps {
 	id: string;
 	taskName: string;
 	taskDeadline: Date;
-	handleDelete: (id: string) => Promise<void>;
-	handleUpdate: (id: string) => Promise<void>;
 	newDateRef: React.RefObject<HTMLInputElement>;
 }
 
-function Task({
-	id,
-	taskDeadline,
-	taskName,
-	handleDelete,
-	handleUpdate,
-	newDateRef,
-}: TaskProps) {
-	const [isDone, setIsDone] = useState("");
-	const [isUpdating, setIsUpdating] = useState(false);
+const Task = ({ id, taskDeadline, taskName, newDateRef }: TaskProps) => {
+	const [isDone, setIsDone] = useState<string>("");
+	const [isUpdating, setIsUpdating] = useState<boolean>(false);
 	const taskDeadlineDate = new Date(taskDeadline);
 	const currentDate = new Date();
 
-	const handleTaskDelete = async () => {
-		setIsDone("no");
-		await handleDelete(id);
+	const handleDelete = async (id: string) => {
+		await new Promise((resolve) => setTimeout(resolve, 650));
+		await deleteDoc(doc(firestore, "Tasks", id));
 	};
 
-	const handleTaskDone = async () => {
-		setIsDone("yes");
-		await handleDelete(id);
-	};
-
-	const handleTaskUpdate = async () => {
+	const handleUpdate = (id: string) => {
 		setIsUpdating(false);
-		await handleUpdate(id);
+		updateDoc(doc(firestore, "Tasks", id), {
+			taskDeadline: newDateRef.current?.value,
+		});
 	};
 
-	function isTaskOverdue(): boolean {
-		taskDeadlineDate.setHours(0, 0, 0, 0);
-		currentDate.setHours(0, 0, 0, 0);
-		return taskDeadlineDate < currentDate;
-	}
+	const handleTaskDelete = () => {
+		setIsDone("no");
+		handleDelete(id);
+	};
 
-	function getTimeLeft(): string | null {
+	const handleTaskDone = () => {
+		setIsDone("yes");
+		handleDelete(id);
+	};
+
+	const handleTaskUpdate = () => {
+		handleUpdate(id);
+	};
+
+	const isTaskOverdue = (): boolean => {
+		const taskDeadlineDateCopy = new Date(taskDeadlineDate);
+		const currentDateCopy = new Date(currentDate);
+		taskDeadlineDateCopy.setHours(0, 0, 0, 0);
+		currentDateCopy.setHours(0, 0, 0, 0);
+		return taskDeadlineDateCopy < currentDateCopy;
+	};
+
+	const getTimeLeft = (): string | null => {
 		const timeDiff = taskDeadlineDate.getTime() - currentDate.getTime();
 
 		if (taskDeadlineDate.toDateString() === currentDate.toDateString()) {
@@ -68,7 +74,7 @@ function Task({
 		} else {
 			return `${daysLeft} days left (${deadlineString})`;
 		}
-	}
+	};
 
 	let classes =
 		"bg-gray-200 dark:bg-gray-800 my-1 xs:my-2 md:my-3  px-2 py-1 md:px-5 md:py-4 rounded-2xl container grid grid-cols-[min-content,1fr,min-content] md:grid-cols-[min-content,1fr,1fr,min-content] md:gap-2  hover:scale-[102.5%] duration-700 md:max-w-5xl shadow-lg shadow-gray-300 dark:shadow-slate-900 font-roboto hover:shadow-gray-300/90 dark:hover:shadow-gray-800/70 hover:shadow-md border-2 border-gray-200 dark:border-gray-800 z-10 relative text-center ";
@@ -119,7 +125,7 @@ function Task({
 						</div>
 					) : (
 						<div className={leftButtonClasses}>
-							<Button done type="button" onClick={() => handleTaskDone()}>
+							<Button done type="button" onClick={handleTaskDone}>
 								<TbCheck />
 							</Button>
 						</div>
@@ -131,7 +137,7 @@ function Task({
 							: `You missed this task. ${getTimeLeft()}`}
 					</p>
 					<div className="col-start-3  md:col-start-4 row-span-3 self-center">
-						<Button deletes type="button" onClick={() => handleTaskDelete()}>
+						<Button deletes type="button" onClick={handleTaskDelete}>
 							<VscClose />
 						</Button>
 					</div>
@@ -139,6 +145,6 @@ function Task({
 			)}
 		</li>
 	);
-}
+};
 
 export default Task;

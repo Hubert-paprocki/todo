@@ -6,6 +6,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	placeholder?: string;
 	invalid?: boolean;
 	errorMessage?: string;
+	names?: string;
 }
 
 function Input({
@@ -15,7 +16,8 @@ function Input({
 	placeholder,
 	invalid,
 	errorMessage,
-}: InputProps) {
+	names,
+}: InputProps): JSX.Element {
 	let borderStyle =
 		"p-0.5 rounded-lg max-w-sm bg-gradient-to-r from-indigo-500 to-rose-500 dark:from-violet-500 dark:to-cyan-500 self-center flex items-center justify-center w-full ";
 
@@ -43,6 +45,7 @@ function Input({
 				defaultValue={
 					date ? new Date().toISOString().substring(0, 10) : undefined
 				}
+				name={names}
 			/>
 		</div>
 	);

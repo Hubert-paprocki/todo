@@ -1,13 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import {
-	collection,
-	onSnapshot,
-	doc,
-	deleteDoc,
-	updateDoc,
-	query,
-	where,
-} from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { firestore } from "../firebase";
 import NewTaskForm from "../components/NewTaskForm";
 import Task from "../components/Task";
@@ -42,18 +34,6 @@ function App(): JSX.Element {
 	const dateRef = useRef<HTMLInputElement>(null);
 	const newDateRef = useRef<HTMLInputElement>(null);
 
-	const handleDelete = async (id: string) => {
-		setTimeout(async () => {
-			await deleteDoc(doc(firestore, "Tasks", id));
-		}, 650);
-	};
-
-	const handleUpdate = async (id: string) => {
-		await updateDoc(doc(firestore, "Tasks", id), {
-			taskDeadline: newDateRef.current?.value,
-		});
-	};
-
 	const renderedTaskList = data
 		.slice()
 		.sort(
@@ -66,8 +46,6 @@ function App(): JSX.Element {
 				id={item.id}
 				taskName={item.taskName}
 				taskDeadline={item.taskDeadline}
-				handleDelete={handleDelete}
-				handleUpdate={handleUpdate}
 				newDateRef={newDateRef}
 			/>
 		));
