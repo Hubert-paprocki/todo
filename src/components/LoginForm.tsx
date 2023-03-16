@@ -23,7 +23,7 @@ function LoginForm(): JSX.Element {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="flex flex-col gap-5 sm:gap-8 md:gap-10 text-center items-center"
+			className="flex flex-col gap-5 sm:gap-8  text-center items-center"
 		>
 			<div className="w-64 md:w-72">
 				<Input

@@ -63,7 +63,7 @@ function NewTaskForm({ taskNameRef, dateRef, userName }: NewTaskFormProps) {
 				<div className="col-start-1">
 					<Input type="date" refs={dateRef} invalid={!isDateValid} date />
 				</div>
-				<div className="row-span-2 row-start-1 col-start-2">
+				<div className="row-span-2 row-start-1 col-start-2 flex min-w-max">
 					<Button primary type={"submit"}>
 						Add task
 					</Button>
