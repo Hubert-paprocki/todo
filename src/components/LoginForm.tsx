@@ -2,8 +2,9 @@ import { useRef, useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Input from "./Input";
+import React from "react";
 
-function LoginForm(): JSX.Element {
+const LoginForm: React.FC = () => {
 	const [isInputValid, setInputValid] = useState(true);
 	const userNameRef = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
@@ -38,6 +39,6 @@ function LoginForm(): JSX.Element {
 			</Button>
 		</form>
 	);
-}
+};
 
 export default LoginForm;

@@ -1,7 +1,8 @@
 import { HiOutlineChevronDown } from "react-icons/hi";
 import Button from "./Button";
+import React from "react";
 
-function ThemeSwitch(): JSX.Element {
+const ScrollDownButton: React.FC = () => {
 	const handleScrollDown = () => {
 		window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 	};
@@ -10,6 +11,6 @@ function ThemeSwitch(): JSX.Element {
 			<HiOutlineChevronDown />
 		</Button>
 	);
-}
+};
 
-export default ThemeSwitch;
+export default ScrollDownButton;

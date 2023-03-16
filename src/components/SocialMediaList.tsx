@@ -1,7 +1,7 @@
 import { RiFacebookFill, RiGithubFill, RiLinkedinFill } from "react-icons/ri";
 import SocialMediaItem from "./SocialMediaItem";
 import { ReactNode } from "react";
-
+import React from "react";
 interface ListedSocialMedia {
 	id: number;
 	name: string;
@@ -30,7 +30,7 @@ const ListedSocialMedias: ListedSocialMedia[] = [
 	},
 ];
 
-function SocialMediaList() {
+const SocialMediaList = () => {
 	const renderedSocialMediaList = ListedSocialMedias.map((socialMedia) => {
 		return (
 			<SocialMediaItem
@@ -45,6 +45,6 @@ function SocialMediaList() {
 			{renderedSocialMediaList}
 		</div>
 	);
-}
+};
 
 export default SocialMediaList;

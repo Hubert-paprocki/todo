@@ -1,3 +1,4 @@
+import React from "react";
 interface ButtonProps {
 	children?: React.ReactNode;
 	onClick?: () => void;
@@ -10,7 +11,7 @@ interface ButtonProps {
 	downBtn?: boolean;
 }
 
-function Button({
+const Button: React.FC<ButtonProps> = ({
 	children,
 	type,
 	onClick,
@@ -20,7 +21,7 @@ function Button({
 	reload,
 	themeSwitch,
 	downBtn,
-}: ButtonProps) {
+}) => {
 	let classes =
 		"leading-5 py-1 px-3 md:px-4 md:py-2 rounded hover:scale-105 duration-200 uppercase";
 	if (primary) {
@@ -48,6 +49,6 @@ function Button({
 			{children}
 		</button>
 	);
-}
+};
 
 export default Button;

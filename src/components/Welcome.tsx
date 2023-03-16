@@ -1,8 +1,9 @@
+import React from "react";
 interface WelcomeProps {
 	username?: string;
 }
 
-function Welcome({ username }: WelcomeProps) {
+const Welcome: React.FC<WelcomeProps> = ({ username }) => {
 	return (
 		<h2 className="text-center p-2 font-work text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-2xl dark:text-white uppercase tracking-wide z-10 leading-tight xs:leading-snug md:leading-normal">
 			Welcome
@@ -12,6 +13,6 @@ function Welcome({ username }: WelcomeProps) {
 			what have you planed for today?
 		</h2>
 	);
-}
+};
 
 export default Welcome;

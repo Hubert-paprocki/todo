@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from "react";
-
+import React from "react";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	refs?: React.RefObject<HTMLInputElement>;
 	date?: boolean;
@@ -9,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	names?: string;
 }
 
-function Input({
+const Input: React.FC<InputProps> = ({
 	type,
 	refs,
 	date,
@@ -17,7 +17,7 @@ function Input({
 	invalid,
 	errorMessage,
 	names,
-}: InputProps): JSX.Element {
+}) => {
 	let borderStyle =
 		"p-0.5 rounded-lg max-w-sm bg-gradient-to-r from-indigo-500 to-rose-500 dark:from-violet-500 dark:to-cyan-500 self-center flex items-center justify-center w-full ";
 
@@ -49,6 +49,6 @@ function Input({
 			/>
 		</div>
 	);
-}
+};
 
 export default Input;

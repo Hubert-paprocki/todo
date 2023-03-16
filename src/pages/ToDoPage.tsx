@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 import Tip from "../components/Tip";
 import { useLocation } from "react-router-dom";
 
-function App(): JSX.Element {
+const ToDoPage: React.FC = () => {
 	const [data, setData] = useState<any[]>([]);
 	const location = useLocation();
 	const userName = new URLSearchParams(location.search).get("user")?.toString();
@@ -78,6 +78,6 @@ function App(): JSX.Element {
 			<Footer />
 		</>
 	);
-}
+};
 
-export default App;
+export default ToDoPage;

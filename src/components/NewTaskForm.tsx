@@ -4,6 +4,7 @@ import { firestore } from "../firebase";
 import Button from "./Button";
 import Input from "./Input";
 import ThemeSwitch from "./ThemeSwitch";
+import React from "react";
 
 interface NewTaskFormProps {
 	taskNameRef: React.RefObject<HTMLInputElement>;
@@ -11,7 +12,11 @@ interface NewTaskFormProps {
 	userName: string | undefined;
 }
 
-function NewTaskForm({ taskNameRef, dateRef, userName }: NewTaskFormProps) {
+const NewTaskForm: React.FC<NewTaskFormProps> = ({
+	taskNameRef,
+	dateRef,
+	userName,
+}) => {
 	const [isInputValid, setInputValid] = useState(true);
 	const [isDateValid, setDateValid] = useState(true);
 
@@ -74,6 +79,6 @@ function NewTaskForm({ taskNameRef, dateRef, userName }: NewTaskFormProps) {
 			</div>
 		</div>
 	);
-}
+};
 
 export default NewTaskForm;

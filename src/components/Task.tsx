@@ -6,7 +6,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
-
+import React from "react";
 interface TaskProps {
 	id: string;
 	taskName: string;
@@ -14,7 +14,12 @@ interface TaskProps {
 	newDateRef: React.RefObject<HTMLInputElement>;
 }
 
-const Task = ({ id, taskDeadline, taskName, newDateRef }: TaskProps) => {
+const Task: React.FC<TaskProps> = ({
+	id,
+	taskDeadline,
+	taskName,
+	newDateRef,
+}) => {
 	const [isDone, setIsDone] = useState<string>("");
 	const [isUpdating, setIsUpdating] = useState<boolean>(false);
 	const taskDeadlineDate = new Date(taskDeadline);

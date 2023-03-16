@@ -1,8 +1,9 @@
 import { BsSun, BsMoon } from "react-icons/bs";
 import { useState, useEffect, useCallback } from "react";
 import Button from "./Button";
+import React from "react";
 
-function ThemeSwitch(): JSX.Element {
+const ThemeSwitch: React.FC = () => {
 	const [theme, setTheme] = useState<"light" | "dark">();
 
 	useEffect(() => {
@@ -45,6 +46,6 @@ function ThemeSwitch(): JSX.Element {
 			)}
 		</Button>
 	);
-}
+};
 
 export default ThemeSwitch;

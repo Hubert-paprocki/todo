@@ -1,7 +1,7 @@
 import React from "react";
 import SocialMediaList from "./SocialMediaList";
 
-function Footer(): JSX.Element {
+const Footer: React.FC = () => {
 	const currentYear = new Date().getFullYear();
 	return (
 		<div className="bg-gray-200 dark:bg-zinc-900 text-stone-600 dark:text-neutral-300 text-md xs:text-lg px-5 xs:px-10 flex flex-col pt-0 md:pt-5 justify-center items-center md:items-stretch text-center  gap-y-10 md:flex-row md:gap-y-0 pb-8">
@@ -23,5 +23,6 @@ function Footer(): JSX.Element {
 			</div>
 		</div>
 	);
-}
+};
+
 export default Footer;
