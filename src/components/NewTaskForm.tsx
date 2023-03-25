@@ -23,6 +23,7 @@ const NewTaskForm: React.FC<NewTaskFormProps> = ({
 	function isValidDate(dateString: string) {
 		const regEx = /^\d{4}-\d{2}-\d{2}$/;
 		if (!dateString.match(regEx)) return false;
+		return true;
 	}
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
