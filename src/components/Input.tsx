@@ -1,12 +1,12 @@
 import { InputHTMLAttributes } from "react";
 import React from "react";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-	refs?: React.RefObject<HTMLInputElement>;
-	date?: boolean;
-	placeholder?: string;
-	invalid?: boolean;
-	errorMessage?: string;
-	names?: string;
+	readonly refs?: React.RefObject<HTMLInputElement>;
+	readonly date?: boolean;
+	readonly placeholder?: string;
+	readonly invalid?: boolean;
+	readonly errorMessage?: string;
+	readonly names?: string;
 }
 
 const Input: React.FC<InputProps> = ({

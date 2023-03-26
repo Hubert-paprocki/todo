@@ -8,10 +8,10 @@ import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
 import React from "react";
 interface TaskProps {
-	id: string;
-	taskName: string;
-	taskDeadline: Date;
-	newDateRef: React.RefObject<HTMLInputElement>;
+	readonly id: string;
+	readonly taskName: string;
+	readonly taskDeadline: Date;
+	readonly newDateRef: React.RefObject<HTMLInputElement>;
 }
 
 const Task: React.FC<TaskProps> = ({

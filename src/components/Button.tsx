@@ -1,14 +1,14 @@
 import React from "react";
 interface ButtonProps {
-	children?: React.ReactNode;
-	onClick?: () => void;
-	type?: "button" | "submit" | "reset" | undefined;
-	primary?: boolean;
-	done?: boolean;
-	deletes?: boolean;
-	reload?: boolean;
-	themeSwitch?: boolean;
-	downBtn?: boolean;
+	readonly children?: React.ReactNode;
+	readonly onClick?: () => void;
+	readonly type?: "button" | "submit" | "reset" | undefined;
+	readonly primary?: boolean;
+	readonly done?: boolean;
+	readonly deletes?: boolean;
+	readonly reload?: boolean;
+	readonly themeSwitch?: boolean;
+	readonly downBtn?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({

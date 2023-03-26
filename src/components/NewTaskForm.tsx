@@ -7,9 +7,9 @@ import ThemeSwitch from "./ThemeSwitch";
 import React from "react";
 
 interface NewTaskFormProps {
-	taskNameRef: React.RefObject<HTMLInputElement>;
-	dateRef: React.RefObject<HTMLInputElement>;
-	userName: string | undefined;
+	readonly taskNameRef: React.RefObject<HTMLInputElement>;
+	readonly dateRef: React.RefObject<HTMLInputElement>;
+	readonly userName: string | undefined;
 }
 
 const NewTaskForm: React.FC<NewTaskFormProps> = ({

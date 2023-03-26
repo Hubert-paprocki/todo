@@ -1,6 +1,6 @@
 import React from "react";
 interface WelcomeProps {
-	username?: string;
+	readonly username?: string;
 }
 
 const Welcome: React.FC<WelcomeProps> = ({ username }) => {
