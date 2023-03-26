@@ -3,7 +3,7 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { firestore } from "../firebase";
 import NewTaskForm from "../components/NewTaskForm";
 import Task from "../components/Task";
-import BackgroundImage from "../images/bgimg.jpg";
+import BackgroundImage from "../images/bgimg1.webp";
 import Welcome from "../components/Welcome";
 import Footer from "../components/Footer";
 import Tip from "../components/Tip";
