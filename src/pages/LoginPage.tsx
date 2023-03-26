@@ -7,7 +7,7 @@ import React from "react";
 const LoginPage: React.FC = () => {
 	return (
 		<>
-			<div className="bg-gray-300 dark:bg-gray-900 bg-gradient-to-br from-pink-400/50 dark:from-pink-900/30 via-gray-300 dark:via-gray-900 to-indigo-100 dark:to-indigo-900/10 h-screen overflow-hidden text-gray-800 dark:text-slate-300 p-3 font-roboto text:lg md:text-xl flex flex-col justify-center items-center relative scroll-smooth gap-2">
+			<main className="bg-gray-300 dark:bg-gray-900 bg-gradient-to-br from-pink-400/50 dark:from-pink-900/30 via-gray-300 dark:via-gray-900 to-indigo-100 dark:to-indigo-900/10 h-screen overflow-hidden text-gray-800 dark:text-slate-300 p-3 font-roboto text:lg md:text-xl flex flex-col justify-center items-center relative scroll-smooth gap-2">
 				<div className="bg-gray-200 dark:bg-gray-800  sm:m-4 py-3 px-6 md:py-6 md:px-12 rounded-2xl max-w-3xl shadow-xl relative  duration-150">
 					<div className="absolute top-2 right-2 sm:top-5 sm:right-5">
 						<ThemeSwitch />
@@ -28,7 +28,7 @@ const LoginPage: React.FC = () => {
 				</div>
 
 				<ScrollDownButton />
-			</div>
+			</main>
 			<Footer />
 		</>
 	);

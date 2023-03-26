@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
 					This website was made by
 					<span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-rose-600 dark:from-violet-500 dark:to-cyan-500 text-xl tracking-wide ">
 						{" "}
-						Hubert Paprocki{" "}
+						Hubert Paprocki
 					</span>
 					. All rights reserved. Copyright © {currentYear}
 				</p>
