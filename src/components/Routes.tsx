@@ -4,14 +4,15 @@ import ToDoPage from "../pages/ToDoPage";
 import LoginPage from "../pages/LoginPage";
 
 const AppRoutes: React.FC = () => {
-	return (
-		<BrowserRouter>
-			<Routes>
-				<Route index element={<LoginPage />} />
-				<Route path="/todos" element={<ToDoPage />} />
-			</Routes>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<LoginPage />} />
+        <Route path="/todos" element={<ToDoPage />} />
+        <Route path="*" element={<LoginPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default AppRoutes;
