@@ -2,7 +2,7 @@
 
 This is a simple ToDo application that allows you to manage your tasks and keep track of your progress. It provides a user-friendly interface, modern look and basic functionality for creating, editing, and completing tasks.
 
-This repository contains the source code and assets for the Cookie Clicker Redux game. Feel free to explore, modify, and contribute to the development of the game.
+This repository contains the source code and assets for the ToDo application. Feel free to explore, modify, and contribute to the development of this app.
 
 ## Prerequisites
 
