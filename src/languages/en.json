@@ -1,6 +1,36 @@
 {
-  "lang":"en",
+  "banner":["WELCOME","WHAT HAVE YOU PLANED FOR TODAY?"],
   "loginPage":{
-    "welcome":"Hi There!"
+    "welcome":"Hi There!",    
+    "logInInstructions":"To get started, we'd like to create a user account for you so that we can remember your tasks across sessions. Please provide us with your name or nickname in the reply to this message. Once we have this information, we can create your user account in our database. Thank you!"
+  },
+  "footer":{
+    "description":"What's the plan? helps you organize and manage your tasks with ease. With a simple and intuitive interface, you can quickly add,complete, set due dates and prioritize your tasks. Keep track of your progress and never forget an important task again.",
+    "copyright":["This website was made by","Hubert Paprocki"," All rights reserved. ©"]
+  },
+  "buttons":{
+    "login":"login",
+    "addTask":"add new task"
+  },
+  "inputs":{
+    "username":{
+      "usernamePlaceholder":"Type your username",
+      "usernameErr":"Please enter valid username"
+    },
+    "taskField":{
+      "taskFieldPlaceholder":"What is on your mind?",
+      "taskFieldErr":"Please enter task name"
+    },
+    "dateField":{
+      "dateFieldPlaceholder":"",
+      "dateFieldErr":""
+    }
+  },
+  "tip":"You can scroll thru tasks with mouse wheel",
+  "task":{
+    "taskDateToday":"Due today",
+    "taskDateMissed":"You missed this task.",
+    "taskDateUpcoming":"days left",
+    "taskSetNewDate":"Set new date:"
   }
 }

@@ -1,0 +1,36 @@
+{
+  "banner": ["witaj", "CO ZAPLANOWAŁEŚ NA dzisiaj?"],
+  "loginPage":{
+    "welcome":"Cześć!",
+    "logInInstructions":"Aby rozpocząć, chcielibyśmy stworzyć dla Ciebie konto użytkownika, dzięki niemu będziemy mogli zapamiętać Twoje zadania między sesjami. Prosimy podaj nam swoje imię lub pseudonim. Po otrzymaniu tych informacji będziemy mogli utworzyć Twoje konto w naszej bazie danych. Dziękujemy!"
+  },
+  "footer": {
+    "description": "What's the plan? pomaga Ci organizować i zarządzać swoimi zadaniami z łatwością. Dzięki prostemu i intuicyjnemu interfejsowi możesz szybko dodawać, oznaczać jako ukończone, ustawiać terminy i priorytety dla swoich zadań. Śledź swój postęp i nigdy więcej nie zapomnij o ważnym zadaniu.",
+    "copyright": ["Ta strona została stworzona przez", "Hubert Paprocki", " Wszelkie prawa zastrzeżone. © "]
+  },
+  "buttons": {
+    "login": "Zaloguj się",
+    "addTask": "Dodaj zadanie"
+  },
+  "inputs": {
+    "username": {
+      "usernamePlaceholder": "Wpisz swoją nazwę",
+      "usernameErr": "Błędna nazwa użytkownika"
+    },
+    "taskField": {
+      "taskFieldPlaceholder": "Co masz na myśli?",
+      "taskFieldErr": "Błędna nazwa zadania"
+    },
+    "dateField":{
+      "dateFieldPlaceholder":"",
+      "dateFieldErr":""
+    }
+  },
+  "tip": "Możesz przewijać zadania za pomocą kółka myszy",
+  "task": {
+    "taskDateToday": "Termin dzisiaj",
+    "taskDateMissed": "Przegapiłeś to zadanie.",
+    "taskDateUpcoming": "dni do końca",
+    "taskSetNewDate": "Ustaw nową datę:"
+    }
+}
