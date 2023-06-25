@@ -1,46 +1,117 @@
-# Getting Started with Create React App
+# ToDo App "What's the plan?"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple ToDo application that allows you to manage your tasks and keep track of your progress. It provides a user-friendly interface, modern look and basic functionality for creating, editing, and completing tasks.
 
-## Available Scripts
+This repository contains the source code and assets for the Cookie Clicker Redux game. Feel free to explore, modify, and contribute to the development of the game.
 
-In the project directory, you can run:
+## Prerequisites
 
-### `npm start`
+Before cloning and running the React app, make sure you have the following prerequisites installed on your system:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Node.js](https://nodejs.org) (version 17 or higher)
+- [npm](https://www.npmjs.com/) (usually comes with Node.js installation)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Create new tasks with a title and description.
+- Log into your account to retrieve your tasks from the server.
+- Edit existing tasks to update their details.
+- Mark tasks as completed.
+- View a list of all tasks.
+- Delete tasks you no longer need.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+To install and run the React app, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone this repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/Hubert-paprocki/todo
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Navigate to the project directory:
 
-### `npm run eject`
+```bash
+cd todo
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Install the dependencies:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. Start the development server:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm run start
+```
 
-## Learn More
+This will start the development server at [http://localhost:3000](http://localhost:3000).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. Open [http://localhost:3000](http://localhost:3000) in your web browser to view the app.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Usage
+
+The `src` directory contains the main code for this application. You can start modifying and building your app by editing the files in this directory.
+
+The entry point for the application is `src/index.js`, where the root component is rendered.
+
+The `public` directory contains the public assets for your application, such as HTML and favicon files. You can customize the `public/index.html` file to include any additional scripts or stylesheets.
+
+## Building for Production
+
+To build the app for production, use the following command:
+
+```bash
+npm run build
+```
+
+This will create an optimized and minified version of your app in the `build` directory.
+
+You can then deploy the contents of the `build` directory to your web server or any static hosting platform.
+
+## Contributing
+
+Contributions to this application are always welcome! If you have any ideas, bug fixes, or improvements, please follow these steps:
+
+1. Fork the repository.
+
+2. Create a new branch:
+
+```bash
+git checkout -b my-feature
+```
+
+3. Make your modifications and commit changes:
+
+```bash
+git commit -am 'Add my feature'
+```
+
+4. Push the branch:
+
+```bash
+git push origin my-feature
+```
+
+5.
+
+Create a pull request.
+
+Please ensure that your code follows the project's coding style and conventions.
+
+## License
+
+todo project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this project for personal and commercial purposes.
+
+## Contact
+
+If you have any questions, suggestions, or feedback, feel free to contact the project maintainer:
+
+- Name: Hubert Paprocki
+- Email: hubertpaprocki.dev@gmail.com
+- LinkedIn: https://www.linkedin.com/in/hubert-paprocki-krk/
+
+I hope you enjoy staying organized with 'What's the plan?'
