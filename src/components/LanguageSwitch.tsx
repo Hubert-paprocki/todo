@@ -9,11 +9,11 @@ const LanguageSwitch: React.FC = () => {
   return (
     <Button type="button" onClick={handleLanguageSwitch} Switch>
       {language === "pl" ? (
-        <img src={polandFlag} alt="polish flag" draggable="false" />
+        <img src={usaFlag} alt="usa flag" draggable="false" />
       ) : (
         <img
-          src={usaFlag}
-          alt="usa flag"
+          src={polandFlag}
+          alt="polish flag"
           className="rotate-[360deg] object-cover"
           draggable="false"
         />
