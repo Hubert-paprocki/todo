@@ -157,7 +157,7 @@ const Task: React.FC<TaskProps> = ({
             </div>
           )}
           <p className={taskNameClasses}>{taskName}</p>
-          <p className="flex-1 text-stone-500 dark:text-gray-400 col-start-2 row-start-2 md:row-start-1 justify-self-center md:col-start-3 md:row-span-3 flex items-center px-2">
+          <p className="flex-1 text-stone-600 dark:text-gray-400 col-start-2 row-start-2 md:row-start-1 justify-self-center md:col-start-3 md:row-span-3 flex items-center px-2">
             {!isTaskOverdue()
               ? getTimeLeft()
               : `${
