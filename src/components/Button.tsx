@@ -9,6 +9,7 @@ interface ButtonProps {
   readonly reload?: boolean;
   readonly Switch?: boolean;
   readonly downBtn?: boolean;
+  readonly ariaLabel?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -21,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   reload,
   Switch,
   downBtn,
+  ariaLabel,
 }) => {
   let classes =
     "leading-5 py-1 px-3 md:px-4 md:py-2 rounded hover:scale-105 duration-200 uppercase active:translate-y-0.5";
@@ -45,7 +47,12 @@ const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={classes}
+      aria-label={ariaLabel}
+    >
       {children}
     </button>
   );

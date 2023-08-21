@@ -110,7 +110,12 @@ const Task: React.FC<TaskProps> = ({
       {isUpdating ? (
         <>
           <div className={leftButtonClasses}>
-            <Button done type="button" onClick={() => handleTaskUpdate()}>
+            <Button
+              done
+              type="button"
+              onClick={() => handleTaskUpdate()}
+              ariaLabel="save task date"
+            >
               <TbCheck />
             </Button>
           </div>
@@ -130,13 +135,23 @@ const Task: React.FC<TaskProps> = ({
         <>
           {isTaskOverdue() ? (
             <div className={leftButtonClasses}>
-              <Button reload type="button" onClick={() => setIsUpdating(true)}>
+              <Button
+                reload
+                type="button"
+                onClick={() => setIsUpdating(true)}
+                ariaLabel="change task date"
+              >
                 <RxReload />
               </Button>
             </div>
           ) : (
             <div className={leftButtonClasses}>
-              <Button done type="button" onClick={handleTaskDone}>
+              <Button
+                done
+                type="button"
+                onClick={handleTaskDone}
+                ariaLabel="task completed"
+              >
                 <TbCheck />
               </Button>
             </div>
@@ -150,7 +165,12 @@ const Task: React.FC<TaskProps> = ({
                 } ${getTimeLeft()}`}
           </p>
           <div className="col-start-3  md:col-start-4 row-span-3 self-center">
-            <Button deletes type="button" onClick={handleTaskDelete}>
+            <Button
+              deletes
+              type="button"
+              onClick={handleTaskDelete}
+              ariaLabel="delete task"
+            >
               <VscClose />
             </Button>
           </div>

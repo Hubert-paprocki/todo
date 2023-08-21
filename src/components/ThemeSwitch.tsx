@@ -38,7 +38,12 @@ const ThemeSwitch: React.FC = () => {
   }, []);
 
   return (
-    <Button type={"button"} onClick={handleThemeSwitch} Switch>
+    <Button
+      type={"button"}
+      onClick={handleThemeSwitch}
+      Switch
+      ariaLabel="theme switch"
+    >
       {theme === "light" ? (
         <BsSun className="m-2.5" />
       ) : (
